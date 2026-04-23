@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Godavarthi Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F7F4EE;
+  --white: #FEFCF8;
+  --ink: #1A1916;
+  --ink-mid: #4B4840;
+  --ink-soft: #908D84;
+  --sage: #4A7A62;
+  --sage-pale: #EAF2ED;
+  --terra: #B85C35;
+  --terra-pale: #F5EAE3;
+  --border: rgba(26,25,22,0.10);
+  --border-mid: rgba(26,25,22,0.18);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'DM Sans', sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.7;
+}
+
+/* NAV */
+nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(247,244,238,0.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:0 3rem;
+  height:60px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav-brand {
+  font-family:'Libre Baskerville', serif;
+  font-size:1rem; font-weight:400;
+  color:var(--ink); text-decoration:none;
+}
+.nav-brand span { font-style:italic; color:var(--sage); }
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a {
+  font-size:0.82rem; font-weight:400; letter-spacing:0.03em;
+  color:var(--ink-mid); text-decoration:none; transition:color 0.18s;
+}
+.nav-links a:hover { color:var(--sage); }
+
+/* HERO */
+.hero {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:90vh;
+  border-bottom:1px solid var(--border);
+}
+.hero-left {
+  padding:5rem 3rem 4rem;
+  display:flex; flex-direction:column; justify-content:center;
+  border-right:1px solid var(--border);
+}
+.hero-tag {
+  font-size:0.72rem; font-weight:500; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--sage); margin-bottom:2rem;
+}
+.hero-left h1 {
+  font-family:'Libre Baskerville', serif;
+  font-size:3.4rem; line-height:1.12; font-weight:400;
+  letter-spacing:-0.02em; color:var(--ink); margin-bottom:2rem;
+}
+.hero-left h1 em { font-style:italic; color:var(--sage); }
+.hero-desc {
+  font-size:1rem; color:var(--ink-mid);
+  max-width:440px; line-height:1.85; margin-bottom:3rem;
+}
+.hero-ctas { display:flex; gap:1rem; flex-wrap:wrap; }
+.btn {
+  font-size:0.82rem; font-weight:500; letter-spacing:0.04em;
+  padding:0.65rem 1.6rem; border-radius:3px;
+  text-decoration:none; transition:all 0.18s; display:inline-block;
+}
+.btn-filled { background:var(--sage); color:#fff; }
+.btn-filled:hover { background:#3a6251; }
+.btn-ghost { border:1px solid var(--border-mid); color:var(--ink-mid); }
+.btn-ghost:hover { border-color:var(--sage); color:var(--sage); }
+
+.hero-right {
+  position:relative; overflow:hidden;
+  background:var(--white);
+  display:flex; flex-direction:column;
+}
+.hero-illustration {
+  flex:1;
+  display:flex; align-items:center; justify-content:center;
+  padding:3rem;
+}
+.synapse-art { width:100%; max-width:400px; opacity:0.9; }
+
+.hero-stats {
+  border-top:1px solid var(--border);
+  display:grid; grid-template-columns:repeat(3,1fr);
+}
+.hero-stat {
+  padding:1.5rem 1.75rem;
+  border-right:1px solid var(--border);
+}
+.hero-stat:last-child { border-right:none; }
+.hero-stat .n {
+  font-family:'Libre Baskerville', serif;
+  font-size:2rem; font-weight:400; color:var(--ink);
+  line-height:1; margin-bottom:0.2rem;
+}
+.hero-stat .l { font-size:0.72rem; color:var(--ink-soft); line-height:1.4; }
+
+/* SECTIONS */
+.section { padding:5.5rem 3rem; max-width:1100px; margin:0 auto; }
+.divider { border:none; border-top:1px solid var(--border); }
+.eyebrow {
+  font-size:0.7rem; font-weight:500; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--ink-soft);
+  margin-bottom:1rem; display:block;
+}
+h2 {
+  font-family:'Libre Baskerville', serif;
+  font-size:2.3rem; font-weight:400; line-height:1.2;
+  letter-spacing:-0.02em; color:var(--ink);
+}
+h2 em { font-style:italic; color:var(--sage); }
+
+/* VISION */
+.vision-layout {
+  display:grid; grid-template-columns:1fr 1.8fr;
+  gap:5rem; align-items:start; margin-top:3rem;
+}
+.vision-lede {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.15rem; font-style:italic; font-weight:400;
+  line-height:1.75; color:var(--ink-mid);
+}
+.vision-body p {
+  font-size:0.97rem; color:var(--ink-mid);
+  line-height:1.85; margin-bottom:1.25rem;
+}
+.vision-body p:last-child { margin-bottom:0; }
+
+/* RESEARCH QUESTIONS */
+.questions-grid { margin-top:4rem; border-top:1px solid var(--border); }
+.question-row {
+  display:grid; grid-template-columns:3rem 1fr 1.5fr;
+  gap:2.5rem; align-items:start;
+  padding:3rem 0; border-bottom:1px solid var(--border);
+}
+.q-num {
+  font-family:'Libre Baskerville', serif;
+  font-size:1rem; font-style:italic; color:var(--ink-soft); padding-top:0.3rem;
+}
+.q-heading {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.35rem; font-weight:400; line-height:1.3; color:var(--ink);
+}
+.q-heading em { font-style:italic; color:var(--terra); }
+.q-diseases { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.75rem; }
+.q-disease {
+  font-size:0.68rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase;
+  padding:0.25rem 0.75rem; border-radius:2px;
+  background:var(--terra-pale); color:var(--terra);
+}
+.q-disease.sage { background:var(--sage-pale); color:var(--sage); }
+.q-body { font-size:0.92rem; color:var(--ink-mid); line-height:1.8; }
+.q-methods { margin-top:1rem; font-size:0.77rem; color:var(--ink-soft); font-style:italic; }
+
+/* PI */
+.pi-layout {
+  display:grid; grid-template-columns:260px 1fr;
+  gap:4rem; align-items:start; margin-top:3.5rem;
+}
+.pi-img {
+  background:var(--sage-pale); border-radius:4px;
+  aspect-ratio:4/5;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  position:relative;
+}
+.pi-monogram {
+  font-family:'Libre Baskerville', serif;
+  font-size:4rem; font-weight:400; font-style:italic;
+  color:var(--sage); opacity:0.3;
+}
+.pi-img-note {
+  position:absolute; bottom:1rem;
+  font-size:0.68rem; color:var(--sage); opacity:0.6; font-style:italic;
+}
+.pi-name {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.6rem; font-weight:400; color:var(--ink); margin-bottom:0.15rem;
+}
+.pi-role { font-size:0.85rem; color:var(--sage); font-weight:500; margin-bottom:0.1rem; }
+.pi-inst { font-size:0.82rem; color:var(--ink-soft); margin-bottom:1.75rem; }
+.pi-bio { font-size:0.95rem; color:var(--ink-mid); line-height:1.85; margin-bottom:1rem; }
+.pi-trail { margin-top:1.75rem; display:flex; flex-direction:column; gap:0.5rem; }
+.pi-trail-item { display:flex; align-items:baseline; gap:0.75rem; font-size:0.85rem; color:var(--ink-mid); }
+.pi-trail-year { font-size:0.72rem; color:var(--ink-soft); font-weight:500; letter-spacing:0.05em; min-width:44px; }
+
+/* CULTURE */
+.culture-block {
+  background:var(--white); border:1px solid var(--border); border-radius:4px;
+  padding:3rem 3.5rem; margin-top:3rem;
+  display:grid; grid-template-columns:1fr 1fr; gap:3rem;
+}
+.culture-quote { border-left:2px solid var(--sage); padding-left:1.5rem; }
+.culture-quote blockquote {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.05rem; font-style:italic; line-height:1.75;
+  color:var(--ink); margin-bottom:0.75rem;
+}
+.culture-quote cite { font-size:0.78rem; color:var(--ink-soft); font-style:normal; }
+.culture-text { font-size:0.93rem; color:var(--ink-mid); line-height:1.85; }
+.culture-text p { margin-bottom:1rem; }
+.culture-text p:last-child { margin-bottom:0; }
+
+/* JOIN */
+.join-wrap { background:var(--ink); border-radius:4px; overflow:hidden; margin-top:3rem; }
+.join-top {
+  padding:3.5rem 4rem;
+  display:grid; grid-template-columns:1fr 1fr; gap:4rem;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.join-top h2 { color:#F7F4EE; font-size:2rem; }
+.join-top h2 em { color:#9FC4B0; }
+.join-lead { font-size:0.95rem; color:rgba(247,244,238,0.62); line-height:1.85; margin-top:1.25rem; }
+.join-list { list-style:none; display:flex; flex-direction:column; gap:0.65rem; margin-top:1.5rem; }
+.join-list li {
+  font-size:0.9rem; color:rgba(247,244,238,0.7); line-height:1.6;
+  display:flex; gap:0.75rem; align-items:flex-start;
+}
+.join-list li::before {
+  content:''; width:5px; height:5px; border-radius:50%;
+  background:#9FC4B0; flex-shrink:0; margin-top:0.6rem;
+}
+.join-right-col h3 {
+  font-family:'Libre Baskerville', serif;
+  font-size:1.1rem; font-weight:400; font-style:italic;
+  color:#F7F4EE; margin-bottom:1.5rem;
+}
+.join-steps { list-style:none; display:flex; flex-direction:column; gap:1.25rem; margin-bottom:2.5rem; }
+.join-steps li { display:flex; gap:1.25rem; font-size:0.88rem; color:rgba(247,244,238,0.65); line-height:1.65; }
+.step-n { font-family:'Libre Baskerville', serif; font-size:1rem; font-style:italic; color:#9FC4B0; flex-shrink:0; width:1.2rem; }
+.join-bottom {
+  padding:2rem 4rem;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+}
+.join-bottom p { font-size:0.82rem; color:rgba(247,244,238,0.38); }
+.btn-join {
+  background:#9FC4B0; color:var(--ink);
+  font-size:0.82rem; font-weight:500; letter-spacing:0.04em;
+  padding:0.7rem 2rem; border-radius:3px;
+  text-decoration:none; transition:background 0.18s;
+}
+.btn-join:hover { background:#b5d3c4; }
+
+/* CONTACT */
+.contact-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--border); border-radius:4px; overflow:hidden; margin-top:3rem;
+}
+.contact-cell {
+  padding:2rem 2.25rem; border-right:1px solid var(--border); background:var(--white);
+}
+.contact-cell:last-child { border-right:none; }
+.contact-cell h4 {
+  font-size:0.7rem; font-weight:500; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--ink-soft); margin-bottom:0.75rem;
+}
+.contact-cell p { font-size:0.88rem; color:var(--ink-mid); line-height:1.7; }
+.contact-cell a { color:var(--sage); text-decoration:none; }
+.contact-cell a:hover { text-decoration:underline; }
+
+footer {
+  border-top:1px solid var(--border);
+  padding:2rem 3rem;
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:0.78rem; color:var(--ink-soft);
+}
+footer a { color:var(--sage); text-decoration:none; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.hero-left > * { animation:fadeUp 0.55s ease forwards; opacity:0; }
+.hero-left > *:nth-child(1) { animation-delay:0.1s; }
+.hero-left > *:nth-child(2) { animation-delay:0.2s; }
+.hero-left > *:nth-child(3) { animation-delay:0.3s; }
+.hero-left > *:nth-child(4) { animation-delay:0.4s; }
+.hero-right { animation:fadeUp 0.55s 0.3s ease forwards; opacity:0; }
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  nav { padding:0 1.25rem; }
+  .nav-links { gap:1.5rem; }
+  .hero { grid-template-columns:1fr; min-height:auto; }
+  .hero-left { padding:4rem 1.5rem 3rem; border-right:none; border-bottom:1px solid var(--border); }
+  .hero-left h1 { font-size:2.5rem; }
+  .section { padding:4rem 1.5rem; }
+  .vision-layout { grid-template-columns:1fr; gap:2rem; }
+  .question-row { grid-template-columns:2rem 1fr; gap:1.5rem; }
+  .question-row > *:last-child { grid-column:2; }
+  .pi-layout { grid-template-columns:1fr; }
+  .pi-img { aspect-ratio:3/2; max-width:280px; }
+  .culture-block { grid-template-columns:1fr; padding:2rem; }
+  .join-top { grid-template-columns:1fr; padding:2.5rem 2rem; gap:2.5rem; }
+  .join-bottom { padding:1.5rem 2rem; flex-direction:column; align-items:flex-start; }
+  .contact-grid { grid-template-columns:1fr; }
+  .contact-cell { border-right:none; border-bottom:1px solid var(--border); }
+  .contact-cell:last-child { border-bottom:none; }
+  footer { flex-direction:column; gap:0.5rem; text-align:center; padding:1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">the <span>Godavarthi</span> lab</a>
+  <ul class="nav-links">
+    <li><a href="#research">research</a></li>
+    <li><a href="pages/people.html">people</a></li>
+    <li><a href="pages/publications.html">publications</a></li>
+    <li><a href="pages/news.html">news</a></li>
+    <li><a href="#join">join us</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Integrated Sciences Academy · RIT · Opening August 2026</div>
+    <h1>When and how synapses<br>choose their <em>language</em></h1>
+    <p class="hero-desc">Every synapse faces the same problem: specify the right transmitter, stabilize it across development and experience, and modify it when circuits need to adapt. We study the molecular logic behind all three.</p>
+    <div class="hero-ctas">
+      <a href="#research" class="btn btn-filled">our research</a>
+      <a href="#join" class="btn btn-ghost">join the lab</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-illustration">
+      <svg class="synapse-art" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+            <path d="M1 1 L7 4 L1 7 Z" fill="#4A7A62" opacity="0.65"/>
+          </marker>
+        </defs>
+        <!-- axon -->
+        <line x1="200" y1="10" x2="200" y2="52" stroke="#4A7A62" stroke-width="2.5" opacity="0.25"/>
+        <!-- presynaptic terminal -->
+        <ellipse cx="200" cy="100" rx="78" ry="56" fill="#EAF2ED" stroke="#4A7A62" stroke-width="1.5"/>
+        <!-- vesicles -->
+        <circle cx="173" cy="90" r="12" fill="#fff" stroke="#4A7A62" stroke-width="1.2"/>
+        <circle cx="200" cy="104" r="12" fill="#fff" stroke="#4A7A62" stroke-width="1.2"/>
+        <circle cx="227" cy="90" r="12" fill="#fff" stroke="#4A7A62" stroke-width="1.2"/>
+        <circle cx="184" cy="117" r="9" fill="#EAF2ED" stroke="#4A7A62" stroke-width="1"/>
+        <circle cx="216" cy="117" r="9" fill="#EAF2ED" stroke="#4A7A62" stroke-width="1"/>
+        <!-- NT dots in vesicles -->
+        <circle cx="173" cy="90" r="4" fill="#4A7A62" opacity="0.45"/>
+        <circle cx="200" cy="104" r="4" fill="#4A7A62" opacity="0.45"/>
+        <circle cx="227" cy="90" r="4" fill="#4A7A62" opacity="0.45"/>
+        <!-- synaptic cleft dashes -->
+        <line x1="122" y1="158" x2="278" y2="158" stroke="#C8C5BE" stroke-width="0.8" stroke-dasharray="5 4"/>
+        <!-- released NT molecules -->
+        <circle cx="183" cy="164" r="5.5" fill="#B85C35" opacity="0.75"/>
+        <circle cx="200" cy="161" r="5.5" fill="#B85C35" opacity="0.75"/>
+        <circle cx="217" cy="165" r="5.5" fill="#B85C35" opacity="0.75"/>
+        <circle cx="191" cy="174" r="4" fill="#B85C35" opacity="0.4"/>
+        <circle cx="209" cy="173" r="4" fill="#B85C35" opacity="0.4"/>
+        <!-- postsynaptic membrane bar -->
+        <rect x="122" y="178" width="156" height="13" rx="6.5" fill="#F5EAE3" stroke="#B85C35" stroke-width="1.5"/>
+        <!-- receptors -->
+        <rect x="135" y="172" width="14" height="24" rx="4" fill="#B85C35" opacity="0.5"/>
+        <rect x="159" y="172" width="14" height="24" rx="4" fill="#B85C35" opacity="0.5"/>
+        <rect x="183" y="172" width="14" height="24" rx="4" fill="#B85C35" opacity="0.9"/>
+        <rect x="207" y="172" width="14" height="24" rx="4" fill="#B85C35" opacity="0.5"/>
+        <rect x="231" y="172" width="14" height="24" rx="4" fill="#B85C35" opacity="0.5"/>
+        <rect x="255" y="172" width="14" height="24" rx="4" fill="#B85C35" opacity="0.5"/>
+        <!-- retrograde arrow -->
+        <path d="M296 192 Q332 158 296 122" stroke="#4A7A62" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arrowhead)"/>
+        <!-- postsynaptic cell body hint -->
+        <ellipse cx="200" cy="246" rx="64" ry="30" fill="#FEF6F1" stroke="#B85C35" stroke-width="1" opacity="0.45"/>
+        <!-- connector -->
+        <line x1="200" y1="196" x2="200" y2="216" stroke="#C8C5BE" stroke-width="0.8" stroke-dasharray="3 2"/>
+        <!-- text labels -->
+        <text x="340" y="158" font-family="Georgia,serif" font-size="10" font-style="italic" fill="#4A7A62" opacity="0.75">retrograde</text>
+        <text x="340" y="171" font-family="Georgia,serif" font-size="10" font-style="italic" fill="#4A7A62" opacity="0.75">signal</text>
+        <text x="115" y="164" font-family="Georgia,serif" font-size="10" font-style="italic" fill="#B85C35" opacity="0.7" text-anchor="end">neurotransmitter</text>
+        <text x="115" y="98" font-family="Georgia,serif" font-size="10" font-style="italic" fill="#4A7A62" opacity="0.65" text-anchor="end">presynaptic</text>
+        <text x="115" y="188" font-family="Georgia,serif" font-size="10" font-style="italic" fill="#B85C35" opacity="0.65" text-anchor="end">postsynaptic</text>
+        <text x="200" y="250" font-family="Georgia,serif" font-size="9.5" font-style="italic" fill="#B85C35" opacity="0.45" text-anchor="middle">postsynaptic cell</text>
+      </svg>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="n">12+</div>
+        <div class="l">peer-reviewed<br>publications</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n">NSF</div>
+        <div class="l">co-PI Standard<br>Grant #2051555</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n">3</div>
+        <div class="l">research<br>directions</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESEARCH -->
+<hr class="divider">
+<div class="section" id="research">
+  <span class="eyebrow">Research</span>
+  <h2>A core problem for <em>every synapse</em></h2>
+  <div class="vision-layout">
+    <p class="vision-lede">Neurotransmitter phenotype is a dynamically regulated synaptic property — not a fixed feature of neurons.</p>
+    <div class="vision-body">
+      <p>Every synapse faces the same fundamental challenge: specify the correct transmitter, stabilize that identity across development and plasticity, and modify it when circuits need to adapt or recover. These processes are activity-dependent and operate throughout the life of the animal. And yet the molecular mechanisms that accomplish them remain incompletely understood.</p>
+      <p>Our lab discovered that postsynaptic neurotransmitter receptors actively regulate presynaptic transmitter identity — retrogradely — through receptor-specific transsynaptic adhesion complexes involving proteins like CASK, Neurexin, Lrp4, and GARLH4. We showed that removing postsynaptic acetylcholine receptors causes loss of presynaptic ACh, and that introducing a non-canonical GABA receptor in muscle is sufficient to drive GABA expression in motor neurons. The synapse is an active, bidirectional negotiation.</p>
+      <p>We also showed that this negotiation can go wrong: prenatal environmental insults drive aberrant neurotransmitter switching in the developing prefrontal cortex, causing autism-like behavior in adult mice — behavior that can be prevented by restoring the correct transmitter identity early. The same mechanism operates in PTSD and addiction. Understanding the <em>rules, constraints, and leverage points</em> of this system is the central aim of the Godavarthi Lab.</p>
+    </div>
+  </div>
+
+  <div style="margin: 2rem 0 3rem; padding: 1.5rem 2rem; background: var(--white); border: 1px solid var(--border); border-radius: 4px;">
+    <p style="font-family:'Libre Baskerville',serif; font-style:italic; font-size:1rem; color:var(--ink); line-height:1.7; margin:0;">"Understanding <em>when</em> and <em>how</em> synapses choose their language is essential for explaining how brain circuits function, adapt, and fail."</p>
+  </div>
+
+  <div class="questions-grid">
+    <div class="question-row">
+      <div class="q-num">i.</div>
+      <div>
+        <div class="q-heading"><em>Rules</em> — how do postsynaptic receptors specify and stabilize presynaptic transmitter identity?</div>
+        <div class="q-diseases">
+          <span class="q-disease sage">Autism</span>
+          <span class="q-disease sage">Schizophrenia</span>
+        </div>
+      </div>
+      <div class="q-body">
+        We have shown that postsynaptic receptors convey their identity to the presynaptic neuron through receptor-specific transsynaptic bridges. In cholinergic synapses, the AChR–Rapsyn–Lrp4–MuSK–Dystroglycan–Neurexin complex stabilizes presynaptic ACh. In GABAergic synapses, a distinct GABA<sub>A</sub>R–GARLH4–Neuroligin–Neurexin complex achieves the same for GABA. The presynaptic scaffold protein CASK is recruited differentially depending on receptor type, and its nuclear localization suggests a transcriptional decoding role. We are now using proteomics and ChIP-Seq to identify the full interactome of these bridges and the transcriptional programs they activate, in both <em>Xenopus</em> and mouse, to define conserved molecular rules of transmitter specification.
+        <div class="q-methods">proteomics · ChIP-Seq · <em>Xenopus</em> &amp; mouse NMJ · morpholino knockdown · viral delivery</div>
+      </div>
+    </div>
+
+    <div class="question-row">
+      <div class="q-num">ii.</div>
+      <div>
+        <div class="q-heading"><em>Leverage</em> — can receptor engineering reprogram a synapse to restore lost function?</div>
+        <div class="q-diseases">
+          <span class="q-disease">Myasthenia gravis</span>
+          <span class="q-disease">Congenital myasthenic syndrome</span>
+        </div>
+      </div>
+      <div class="q-body">
+        In myasthenia gravis, the cholinergic transsynaptic bridge is disrupted — acetylcholine receptors are destroyed by autoimmune attack, and with them the retrograde signal that sustains presynaptic ACh. We demonstrated in <em>Xenopus</em> that this can be bypassed: introducing a non-canonical GABA<sub>A</sub> receptor in muscle establishes a new GABAergic transsynaptic bridge and restores neuromuscular transmission, rescuing swimming behavior. We are now extending this receptor engineering approach — delivered virally — to mouse models of autoimmune and congenital myasthenia, toward a fundamentally new therapeutic strategy that bypasses immune modulation entirely.
+        <div class="q-methods">viral gene delivery · mouse NMJ · electrophysiology · behavioral rescue · human iPSC-derived synapses</div>
+      </div>
+    </div>
+
+    <div class="question-row">
+      <div class="q-num">iii.</div>
+      <div>
+        <div class="q-heading"><em>Constraints</em> — what makes a neuron susceptible to switching its transmitter identity?</div>
+        <div class="q-diseases">
+          <span class="q-disease sage">Autism</span>
+          <span class="q-disease sage">PTSD</span>
+          <span class="q-disease">Addiction</span>
+        </div>
+      </div>
+      <div class="q-body">
+        Neurotransmitter switching — where a neuron gains one transmitter and loses another — is how the matching system fails or adapts under pressure. We showed that prenatal immune activation drives GABAergic PFC interneurons to switch to glutamatergic identity, disrupting excitation-inhibition balance and producing autism-like behavior. The same mechanism underlies PTSD and drug-induced cognitive deficits. But only ~12–30% of neurons switch, even under the same stimulus. Why? We are using live-neuron cytoplasmic biopsy and single-cell transcriptomics to identify the molecular state that makes a neuron permissive to switching, with the goal of controlling this process therapeutically.
+        <div class="q-methods">scRNA-seq · single-cell proteomics · live-neuron biopsy · intersectional mouse genetics · behavioral assays</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PI -->
+<hr class="divider">
+<div class="section" id="pi">
+  <span class="eyebrow">Principal Investigator</span>
+  <h2><em>Swetha</em> Godavarthi</h2>
+  <div class="pi-layout">
+    <div>
+      <div class="pi-img">
+        <div class="pi-monogram">SKG</div>
+        <div class="pi-img-note">photo coming soon</div>
+      </div>
+    </div>
+    <div>
+      <div class="pi-name">Dr. Swetha K. Godavarthi</div>
+      <div class="pi-role">Assistant Professor of Neuroscience</div>
+      <div class="pi-inst">Integrated Sciences Academy, College of Science · Rochester Institute of Technology</div>
+      <p class="pi-bio">Swetha is a cellular and molecular neuroscientist whose work sits at the intersection of synaptic biology, neuroplasticity, and disease. She received her MSc and PhD from the National Brain Research Centre in India, where she studied protein homeostasis in Huntington's disease and Angelman syndrome, before joining Nick Spitzer's lab at UC San Diego — where her interest in neurotransmitter identity took shape.</p>
+      <p class="pi-bio">At UCSD, she made the key discovery that postsynaptic receptors retrogradely stabilize presynaptic neurotransmitter identity through transsynaptic bridges — work published in <em>PNAS</em>. She also demonstrated that prenatal stress drives neurotransmitter switching in the prefrontal cortex, causing autism-like behavior in mice. Most recently she was Research Assistant Professor in Steven Meriney's lab at the University of Pittsburgh, extending this work to mammalian systems.</p>
+      <p class="pi-bio">She is a co-PI on an NSF Standard Grant and a Simons Foundation Empire Faculty Fellow. She has mentored more than a dozen undergraduate researchers and is passionate about building a lab where students from all backgrounds can do rigorous, exciting science.</p>
+      <div class="pi-trail">
+        <div class="pi-trail-item"><span class="pi-trail-year">2026 →</span><span>Assistant Professor, Rochester Institute of Technology</span></div>
+        <div class="pi-trail-item"><span class="pi-trail-year">2024</span><span>Research Assistant Professor, University of Pittsburgh (Meriney lab)</span></div>
+        <div class="pi-trail-item"><span class="pi-trail-year">2015</span><span>Postdoctoral Fellow &amp; Assistant Project Scientist, UC San Diego (Spitzer lab)</span></div>
+        <div class="pi-trail-item"><span class="pi-trail-year">2013</span><span>PhD, Neuroscience — National Brain Research Centre, India</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="culture-block">
+    <div class="culture-quote">
+      <blockquote>"My postdoc supervisor held weekly lab meetings over breakfast — bagels, pain au chocolat, and fruit — where the focus wasn't on polished data, but on thinking together."</blockquote>
+      <cite>— Swetha Godavarthi, on the tradition she's bringing to her own lab</cite>
+    </div>
+    <div class="culture-text">
+      <p>The Godavarthi Lab will be a place where people openly share where they are stuck, where collective thinking helps catch gaps in reasoning early, and where rigor and warmth coexist.</p>
+      <p>Lab meetings will center on ideas over polish. Students are mentored as individuals — with attention to each person's learning style, career goals, and way of working. Science is better when everyone's questions are welcome.</p>
+    </div>
+  </div>
+</div>
+
+<!-- JOIN -->
+<hr class="divider">
+<div class="section" id="join">
+  <span class="eyebrow">Join Us</span>
+  <h2>We are looking for <em>curious minds</em></h2>
+  <div class="join-wrap">
+    <div class="join-top">
+      <div>
+        <h2>Undergraduate<br><em>researchers wanted</em></h2>
+        <p class="join-lead">The lab opens at RIT in August 2026. We are actively recruiting undergraduates excited about neuroscience and molecular biology. No prior lab experience required — only curiosity.</p>
+        <ul class="join-list">
+          <li>Genuine curiosity about how the brain works at a molecular level</li>
+          <li>Interest in any of our three research questions</li>
+          <li>Enthusiasm for hands-on experimental work</li>
+          <li>Students from underrepresented groups in STEM are especially encouraged to reach out</li>
+        </ul>
+      </div>
+      <div class="join-right-col">
+        <h3>How to get involved</h3>
+        <ol class="join-steps">
+          <li><span class="step-n">1.</span><span>Read about our research and find what excites you most.</span></li>
+          <li><span class="step-n">2.</span><span>Send a short email — a few sentences — with your year, major, and why you're interested.</span></li>
+          <li><span class="step-n">3.</span><span>We'll have an informal conversation about your interests and what a day in the lab looks like.</span></li>
+          <li><span class="step-n">4.</span><span>Students who join are trained from scratch — in techniques, experimental design, and scientific communication.</span></li>
+        </ol>
+        <a href="mailto:skgodavarthi@pitt.edu?subject=Undergraduate%20Research%20Inquiry%20%E2%80%94%20Godavarthi%20Lab" class="btn-join">email Dr. Godavarthi →</a>
+      </div>
+    </div>
+    <div class="join-bottom">
+      <p>Reach out now to be considered for the inaugural cohort — fall 2026.</p>
+      <p style="color:rgba(247,244,238,0.28);font-size:0.75rem;">Graduate student and postdoc positions coming soon.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<hr class="divider">
+<div class="section" id="contact" style="padding-bottom:5rem;">
+  <span class="eyebrow">Contact &amp; Location</span>
+  <h2>Find <em>us</em></h2>
+  <div class="contact-grid">
+    <div class="contact-cell">
+      <h4>Address</h4>
+      <p>Integrated Sciences Academy<br>College of Science<br>Rochester Institute of Technology<br>Rochester, NY 14623</p>
+    </div>
+    <div class="contact-cell">
+      <h4>Email</h4>
+      <p><a href="mailto:skgodavarthi@pitt.edu">skgodavarthi@pitt.edu</a><br><br>Please include "Undergraduate Research" in your subject line for lab inquiries.</p>
+    </div>
+    <div class="contact-cell">
+      <h4>Opening</h4>
+      <p>August 12, 2026<br><br>The lab is being set up now. Reach out early to be considered for the first cohort of student researchers.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+<footer>
+  <span>The Godavarthi Lab · RIT Integrated Sciences Academy · Est. 2026</span>
+  <span><a href="mailto:skgodavarthi@pitt.edu">skgodavarthi@pitt.edu</a></span>
+</footer>
+
+</body>
+</html>
