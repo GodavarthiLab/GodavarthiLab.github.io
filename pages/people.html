@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>People — The Godavarthi Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#F7F4EE; --white:#FEFCF8; --ink:#1A1916; --ink-mid:#4B4840;
+  --ink-soft:#908D84; --sage:#4A7A62; --sage-pale:#EAF2ED;
+  --terra:#B85C35; --terra-pale:#F5EAE3;
+  --border:rgba(26,25,22,0.10); --border-mid:rgba(26,25,22,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,238,0.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 3rem;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:400;color:var(--ink);text-decoration:none;}
+.nav-brand span{font-style:italic;color:var(--sage);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:0.82rem;font-weight:400;letter-spacing:0.03em;color:var(--ink-mid);text-decoration:none;transition:color 0.18s;}
+.nav-links a:hover,.nav-links a.active{color:var(--sage);}
+.section{padding:5.5rem 3rem;max-width:1100px;margin:0 auto;}
+.divider{border:none;border-top:1px solid var(--border);}
+.eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem;display:block;}
+h2{font-family:'Libre Baskerville',serif;font-size:2.3rem;font-weight:400;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);}
+h2 em{font-style:italic;color:var(--sage);}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;color:var(--ink-soft);}
+footer a{color:var(--sage);text-decoration:none;}
+
+/* PAGE HERO */
+.page-hero{padding:5rem 3rem 4rem;max-width:1100px;margin:0 auto;border-bottom:1px solid var(--border);}
+.page-hero h1{font-family:'Libre Baskerville',serif;font-size:3rem;font-weight:400;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1.25rem;max-width:700px;}
+.page-hero h1 em{font-style:italic;color:var(--sage);}
+.page-hero p{font-size:1rem;color:var(--ink-mid);max-width:560px;line-height:1.85;}
+
+/* PI CARD */
+.pi-layout{display:grid;grid-template-columns:240px 1fr;gap:4rem;align-items:start;margin-top:3.5rem;}
+.pi-img{background:var(--sage-pale);border-radius:4px;aspect-ratio:4/5;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.pi-img img{width:100%;height:100%;object-fit:cover;}
+.pi-img-placeholder{font-family:'Libre Baskerville',serif;font-size:4rem;font-weight:400;font-style:italic;color:var(--sage);opacity:0.3;}
+.pi-img-note{position:absolute;bottom:1rem;font-size:0.68rem;color:var(--sage);opacity:0.6;font-style:italic;}
+.pi-name{font-family:'Libre Baskerville',serif;font-size:1.6rem;font-weight:400;color:var(--ink);margin-bottom:0.15rem;}
+.pi-role{font-size:0.85rem;color:var(--sage);font-weight:500;margin-bottom:0.1rem;}
+.pi-inst{font-size:0.82rem;color:var(--ink-soft);margin-bottom:1.75rem;}
+.pi-bio{font-size:0.95rem;color:var(--ink-mid);line-height:1.85;margin-bottom:1rem;}
+.pi-links{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;}
+.pi-links a{font-size:0.8rem;color:var(--sage);text-decoration:none;border:1px solid var(--sage);padding:0.35rem 0.85rem;border-radius:3px;transition:all 0.18s;}
+.pi-links a:hover{background:var(--sage);color:#fff;}
+.pi-trail{margin-top:1.75rem;display:flex;flex-direction:column;gap:0.5rem;}
+.pi-trail-item{display:flex;align-items:baseline;gap:0.75rem;font-size:0.85rem;color:var(--ink-mid);}
+.pi-trail-year{font-size:0.72rem;color:var(--ink-soft);font-weight:500;letter-spacing:0.05em;min-width:44px;}
+
+/* TEAM GRID */
+.team-section{margin-top:4rem;}
+.team-section-title{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:400;font-style:italic;color:var(--ink-soft);margin-bottom:2rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem;margin-bottom:3rem;}
+.team-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.team-card-img{aspect-ratio:1/1;background:var(--sage-pale);display:flex;align-items:center;justify-content:center;}
+.team-card-img.terra-bg{background:var(--terra-pale);}
+.team-card-initials{font-family:'Libre Baskerville',serif;font-size:2rem;font-style:italic;color:var(--sage);opacity:0.4;}
+.team-card-initials.terra{color:var(--terra);}
+.team-card-body{padding:1.25rem;}
+.team-card-name{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:400;color:var(--ink);margin-bottom:0.2rem;}
+.team-card-role{font-size:0.78rem;color:var(--sage);font-weight:500;margin-bottom:0.4rem;}
+.team-card-note{font-size:0.78rem;color:var(--ink-soft);line-height:1.5;}
+
+/* JOIN BANNER */
+.join-banner{background:var(--ink);border-radius:4px;padding:3rem 3.5rem;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;margin-top:2rem;}
+.join-banner h3{font-family:'Libre Baskerville',serif;font-size:1.5rem;font-weight:400;color:#F7F4EE;margin-bottom:0.5rem;}
+.join-banner p{font-size:0.92rem;color:rgba(247,244,238,0.62);line-height:1.7;}
+.btn-join{background:#9FC4B0;color:var(--ink);font-size:0.82rem;font-weight:500;letter-spacing:0.04em;padding:0.7rem 2rem;border-radius:3px;text-decoration:none;transition:background 0.18s;white-space:nowrap;}
+.btn-join:hover{background:#b5d3c4;}
+
+@media(max-width:860px){
+  nav{padding:0 1.25rem;}
+  .section{padding:4rem 1.5rem;}
+  .page-hero{padding:3.5rem 1.5rem 3rem;}
+  .page-hero h1{font-size:2.2rem;}
+  .pi-layout{grid-template-columns:1fr;}
+  .pi-img{aspect-ratio:3/2;max-width:240px;}
+  .join-banner{grid-template-columns:1fr;padding:2rem;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">the <span>Godavarthi</span> lab</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#research">research</a></li>
+    <li><a href="people.html" class="active">people</a></li>
+    <li><a href="publications.html">publications</a></li>
+    <li><a href="news.html">news</a></li>
+    <li><a href="joinus.html">JOIN US</a></li>
+    <li><a href="../index.html#contact">contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <span class="eyebrow">People</span>
+  <h1>The <em>team</em></h1>
+  <p>We are a new lab opening at RIT in August 2026. We are actively building our first cohort of researchers — if you're excited about synaptic biology, reach out.</p>
+</div>
+
+<!-- PI -->
+<div class="section">
+  <span class="eyebrow">Principal Investigator</span>
+  <div class="pi-layout">
+    <div>
+      <div class="pi-img">
+  <img src="../images/swetha.jpg" alt="Dr. Swetha Godavarthi">
+</div>
+    </div>
+    <div>
+      <div class="pi-name">Dr. Swetha K. Godavarthi</div>
+      <div class="pi-role">Assistant Professor of Neuroscience</div>
+      <div class="pi-inst">Integrated Sciences Academy, College of Science · Rochester Institute of Technology</div>
+      <p class="pi-bio">Swetha is a cellular and molecular neuroscientist whose work sits at the intersection of synaptic biology, neuroplasticity, and disease.</p>
+<p class="pi-bio">She grew up in India, earned her MSc and PhD from the National Brain Research Centre, where she investigated what drives neuronal loss and circuit failure in Huntington's disease and Angelman syndrome. The answer kept pointing her toward the synapse — and eventually to Nick Spitzer's lab at UC San Diego, where she discovered that postsynaptic receptors actively talk back to the presynaptic neuron, stabilizing its transmitter identity through dedicated molecular bridges.</p>
+<p class="pi-bio">That discovery opened a new set of questions — about disease, about development, about what happens when the conversation breaks down. She firmly believes the best science begins with the courage to say "I don't know," and has followed those questions to Steven Meriney's lab at the University of Pittsburgh, and now to RIT, where she is building a lab around them.</p>
+<p class="pi-bio">When she's not in the lab, Swetha can be found on a trail, deep in a book, or losing herself in classical dance.</p>
+      <p class="pi-bio">She is a co-PI on an NSF Standard Grant and a Simons Foundation Empire Faculty Fellow.</p>
+      <div class="pi-trail">
+        <div class="pi-trail-item"><span class="pi-trail-year">2026 →</span><span>Assistant Professor, Rochester Institute of Technology</span></div>
+        <div class="pi-trail-item"><span class="pi-trail-year">2024</span><span>Research Assistant Professor, University of Pittsburgh (Meriney lab)</span></div>
+        <div class="pi-trail-item"><span class="pi-trail-year">2015</span><span>Postdoctoral Fellow &amp; Assistant Project Scientist, UC San Diego (Spitzer lab)</span></div>
+        <div class="pi-trail-item"><span class="pi-trail-year">2013</span><span>PhD, Neuroscience — National Brain Research Centre, India</span></div>
+      </div>
+      <div class="pi-links">
+        <a href="https://orcid.org/0000-0003-4665-4627" target="_blank">ORCID</a>
+        <a href="publications.html">Publications</a>
+        <a href="mailto:skgodavarthi@pitt.edu">Email</a>
+        <a href="https://scholar.google.com/citations?user=E4t7wzQAAAAJ&hl=en" target="_blank">Google Scholar</a>
+	<a href="https://www.linkedin.com/in/swetha-godavarthi/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin-top:5rem;">
+
+  <!-- GRADUATE STUDENTS -->
+  <div class="team-section">
+    <div class="team-section-title">Graduate Students</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-img">
+          <div class="team-card-initials">?</div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name">Positions opening</div>
+          <div class="team-card-role">PhD Student</div>
+          <div class="team-card-note">Graduate student positions will be available starting Fall 2026. See Join Us.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNDERGRADUATES -->
+    <div class="team-section-title">Undergraduate Researchers</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-img terra-bg">
+          <div class="team-card-initials terra">?</div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name">Positions open</div>
+          <div class="team-card-role">Undergraduate Researcher</div>
+          <div class="team-card-note">We are recruiting undergraduates for Fall 2026. No prior experience required.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOIN BANNER -->
+  <div class="join-banner">
+    <div>
+      <h3>Interested in joining the lab?</h3>
+      <p>We welcome undergraduates, graduate students, and postdoctoral researchers. Send Dr. Godavarthi a short email introducing yourself and your interests.</p>
+    </div>
+    <a href="mailto:skgodavarthi@pitt.edu?subject=Joining%20the%20Godavarthi%20Lab" class="btn-join">get in touch →</a>
+  </div>
+</div>
+
+<hr class="divider">
+<footer>
+  <span>The Godavarthi Lab · RIT Integrated Sciences Academy · Est. 2026</span>
+  <span><a href="mailto:skgodavarthi@pitt.edu">skgodavarthi@pitt.edu</a></span>
+</footer>
+
+</body>
+</html>

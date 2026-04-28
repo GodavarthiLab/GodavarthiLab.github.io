@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Us — Godavarthi Laboratory</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F7F4EE;
+  --white: #FEFCF8;
+  --ink: #1A1916;
+  --ink-mid: #4B4840;
+  --ink-soft: #908D84;
+  --sage: #4A7A62;
+  --sage-pale: #EAF2ED;
+  --terra: #B85C35;
+  --terra-pale: #F5EAE3;
+  --border: rgba(26,25,22,0.10);
+  --border-mid: rgba(26,25,22,0.18);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body { font-family:'DM Sans', sans-serif; background:var(--cream); color:var(--ink); line-height:1.7; }
+
+/* NAV */
+nav { position:sticky; top:0; z-index:100; background:rgba(247,244,238,0.94); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); padding:0 3rem; height:60px; display:flex; align-items:center; justify-content:space-between; }
+.nav-brand { font-family:'Libre Baskerville',serif; font-size:1rem; font-weight:400; color:var(--ink); text-decoration:none; }
+.nav-brand span { font-style:italic; color:var(--sage); }
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a { font-size:0.82rem; font-weight:400; letter-spacing:0.03em; color:var(--ink-mid); text-decoration:none; transition:color 0.18s; }
+.nav-links a:hover, .nav-links a.active { color:var(--sage); }
+
+/* PAGE HERO */
+.page-hero {
+  padding:5rem 3rem 4rem;
+  max-width:1100px; margin:0 auto;
+  border-bottom:1px solid var(--border);
+}
+.page-hero h1 {
+  font-family:'Libre Baskerville',serif;
+  font-size:3rem; font-weight:400; line-height:1.15;
+  letter-spacing:-0.02em; color:var(--ink);
+  margin-bottom:1.25rem; max-width:700px;
+}
+.page-hero h1 em { font-style:italic; color:var(--sage); }
+.page-hero p { font-size:1rem; color:var(--ink-mid); max-width:620px; line-height:1.85; }
+
+/* SECTION */
+.section { padding:5rem 3rem; max-width:1100px; margin:0 auto; }
+.divider { border:none; border-top:1px solid var(--border); }
+.eyebrow { font-size:0.7rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:1rem; display:block; }
+
+/* WHY JOIN */
+.why-section { padding:4rem 3rem; max-width:1100px; margin:0 auto; }
+.why-section h2 {
+  font-family:'Libre Baskerville',serif;
+  font-size:2rem; font-weight:400; line-height:1.2;
+  letter-spacing:-0.02em; color:var(--ink);
+  margin-bottom:2.5rem;
+}
+.why-section h2 em { font-style:italic; color:var(--sage); }
+.why-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1.5rem; margin-bottom:3rem;
+}
+.why-card {
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:6px; padding:1.75rem;
+  border-top:3px solid var(--sage);
+}
+.why-heading {
+  font-size:0.95rem; font-weight:500;
+  color:var(--ink); margin-bottom:0.5rem;
+}
+.why-card p { font-size:0.85rem; color:var(--ink-mid); line-height:1.75; }
+.why-card p em { font-style:italic; color:var(--ink); }
+
+/* POSITION CARDS */
+.positions-section { padding:0 3rem 5rem; max-width:1100px; margin:0 auto; }
+.positions-section h2 {
+  font-family:'Libre Baskerville',serif;
+  font-size:2rem; font-weight:400;
+  letter-spacing:-0.02em; color:var(--ink);
+  margin-bottom:2.5rem;
+}
+.positions-section h2 em { font-style:italic; color:var(--sage); }
+
+.position-block {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:4rem; align-items:start;
+  padding:3rem 0;
+  border-top:1px solid var(--border);
+}
+.position-block:last-child { border-bottom:1px solid var(--border); }
+
+.position-label {
+  font-size:0.68rem; font-weight:600; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--sage);
+  margin-bottom:0.75rem; display:block;
+}
+.position-title {
+  font-family:'Libre Baskerville',serif;
+  font-size:1.5rem; font-weight:400; line-height:1.3;
+  color:var(--ink); margin-bottom:1rem;
+}
+.position-title em { font-style:italic; color:var(--sage); }
+.position-desc {
+  font-size:0.92rem; color:var(--ink-mid);
+  line-height:1.85; margin-bottom:1.25rem;
+}
+.position-tag {
+  display:inline-block;
+  font-size:0.72rem; font-weight:500; letter-spacing:0.06em;
+  text-transform:uppercase; padding:0.25rem 0.75rem;
+  border-radius:2px; margin-bottom:1.5rem;
+}
+.position-tag.open { background:var(--sage-pale); color:var(--sage); }
+.position-tag.soon { background:var(--terra-pale); color:var(--terra); }
+
+.position-list { list-style:none; display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.75rem; }
+.position-list li {
+  font-size:0.88rem; color:var(--ink-mid); line-height:1.6;
+  display:flex; gap:0.75rem; align-items:flex-start;
+}
+.position-list li::before {
+  content:''; width:5px; height:5px; border-radius:50%;
+  background:var(--sage); flex-shrink:0; margin-top:0.6rem;
+}
+
+.position-right h4 {
+  font-family:'Libre Baskerville',serif;
+  font-size:1rem; font-weight:400; font-style:italic;
+  color:var(--ink-soft); margin-bottom:1.25rem;
+}
+.position-steps { list-style:none; display:flex; flex-direction:column; gap:1rem; margin-bottom:2rem; }
+.position-steps li {
+  display:flex; gap:1rem;
+  font-size:0.88rem; color:var(--ink-mid); line-height:1.65;
+}
+.step-n {
+  font-family:'Libre Baskerville',serif;
+  font-size:0.9rem; font-style:italic; color:var(--sage);
+  flex-shrink:0; width:1.2rem;
+}
+
+.btn-apply {
+  display:inline-block;
+  background:var(--sage); color:#fff;
+  font-size:0.82rem; font-weight:500; letter-spacing:0.04em;
+  padding:0.7rem 1.75rem; border-radius:3px;
+  text-decoration:none; transition:background 0.18s;
+}
+.btn-apply:hover { background:#3a6251; }
+.btn-apply.ghost {
+  background:transparent; color:var(--sage);
+  border:1.5px solid var(--sage);
+}
+.btn-apply.ghost:hover { background:var(--sage); color:#fff; }
+
+/* CULTURE QUOTE */
+.culture-strip {
+  background:var(--ink); padding:3.5rem 3rem;
+  margin:0;
+}
+.culture-strip-inner {
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;
+}
+.culture-strip blockquote {
+  font-family:'Libre Baskerville',serif;
+  font-size:1.15rem; font-style:italic; line-height:1.75;
+  color:#F7F4EE; border-left:2px solid #9FC4B0;
+  padding-left:1.5rem; margin-bottom:0.75rem;
+}
+.culture-strip cite { font-size:0.78rem; color:rgba(247,244,238,0.5); font-style:normal; }
+.culture-strip-text { font-size:0.92rem; color:rgba(247,244,238,0.65); line-height:1.85; }
+.culture-strip-text p { margin-bottom:0.75rem; }
+.culture-strip-text p:last-child { margin-bottom:0; }
+
+footer { border-top:1px solid var(--border); padding:2rem 3rem; display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:var(--ink-soft); }
+footer a { color:var(--sage); text-decoration:none; }
+
+@media(max-width:860px){
+  nav { padding:0 1.25rem; }
+  .page-hero { padding:3.5rem 1.5rem 3rem; }
+  .page-hero h1 { font-size:2.2rem; }
+  .why-section, .positions-section, .section { padding-left:1.5rem; padding-right:1.5rem; }
+  .why-grid { grid-template-columns:1fr; }
+  .position-block { grid-template-columns:1fr; gap:2rem; }
+  .culture-strip-inner { grid-template-columns:1fr; }
+  footer { flex-direction:column; gap:0.5rem; text-align:center; padding:1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">Godavarthi <span>Laboratory</span></a>
+  <ul class="nav-links">
+    <li><a href="research.html">RESEARCH</a></li>
+    <li><a href="people.html">PEOPLE</a></li>
+    <li><a href="publications.html">PUBLICATIONS</a></li>
+    <li><a href="news.html">NEWS</a></li>
+    <li><a href="joinus.html" class="active">JOIN US</a></li>
+    <li><a href="../index.html#contact">CONTACT</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <span class="eyebrow">Join Us</span>
+  <h1>Build the lab <em>with us</em></h1>
+  <p>The Godavarthi Lab opens at RIT in August 2026. We are building our first cohort of researchers — undergraduates, graduate students, and postdocs who are excited about synaptic biology, curious about disease, and ready to do rigorous, creative science.</p>
+</div>
+
+<!-- WHY JOIN -->
+<div class="why-section">
+  <h2>Why join <em>us?</em></h2>
+  <div class="why-grid">
+    <div class="why-card">
+  	<div class="why-heading">Basic and disease research</div>
+  <p>We are driven by fundamental curiosity about how synapses work — and by the conviction that this basic science connects directly to neurological conditions like autism and myasthenia gravis. You will do both: ask deep mechanistic questions and understand exactly why they matter for human health.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-heading">Molecules to behavior</div>
+      <p>Our questions span the full range — from synaptic proteins to circuits to animal behavior. You will learn to think and work across scales.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-heading">Multiple model systems</div>
+      <p>Work with <em>Xenopus laevis</em>, mouse, and human iPSC-derived neurons, gaining fluency in how the same question looks different across species and systems.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-heading">Be part of something new</div>
+      <p>Joining a lab at its founding is a rare opportunity. You will help shape the culture, the questions, and the direction of the lab from day one.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-heading">Mentorship that takes you seriously</div>
+      <p>Lab meetings over breakfast, open-door conversations, and training that attends to your individual goals — whether you are headed to graduate school, medicine, industry, or somewhere else entirely.</p>
+    </div>
+  </div>
+</div>
+
+<!-- POSITIONS -->
+<div class="positions-section" style="padding-top:4rem;">
+  <h2>Open <em>positions</em></h2>
+
+  <!-- UNDERGRAD -->
+  <div class="position-block">
+    <div>
+      <span class="position-label">Undergraduate Researchers</span>
+      <div class="position-title">Curious about the <em>brain?</em></div>
+      <span class="position-tag open">Recruiting now — Fall 2026</span>
+      <p class="position-desc">No prior lab experience required — only genuine curiosity. Undergraduates in the Godavarthi Lab are trained from scratch in experimental techniques, scientific reasoning, and communication. We welcome students from all majors and backgrounds.</p>
+      <p class="position-desc">We value diverse perspectives — different backgrounds, experiences, and ways of thinking make the science better.</p>
+      <ul class="position-list">
+        <li>Genuine curiosity about how the brain works at a molecular level</li>
+        <li>Interest in any of our three research themes</li>
+        <li>Enthusiasm for hands-on experimental work</li>
+        <li>Commitment of at least 8–10 hours per week</li>
+      </ul>
+    </div>
+    <div class="position-right">
+      <h4>How to get involved</h4>
+      <ol class="position-steps">
+        <li><span class="step-n">1.</span><span>Read about our research and find what excites you most.</span></li>
+        <li><span class="step-n">2.</span><span>Send a short email — a few sentences — with your year, major, and why you're interested.</span></li>
+        <li><span class="step-n">3.</span><span>We'll have an informal conversation about your interests and what a day in the lab looks like.</span></li>
+        <li><span class="step-n">4.</span><span>Students who join are trained from scratch in techniques, experimental design, and scientific communication.</span></li>
+      </ol>
+      <a href="mailto:skgodavarthi@pitt.edu?subject=Undergraduate%20Research%20Inquiry%20%E2%80%94%20Godavarthi%20Lab" class="btn-apply">Email Dr. Godavarthi →</a>
+    </div>
+  </div>
+
+  <!-- GRAD STUDENTS -->
+  <div class="position-block">
+    <div>
+      <span class="position-label">Graduate Students</span>
+      <div class="position-title">PhD positions <em>coming soon</em></div>
+      <span class="position-tag soon">Not currently recruiting</span>
+      <p class="position-desc">We are looking for motivated PhD students excited about synaptic biology, molecular neuroscience, and disease. Students will work across our three research themes — from defining the rules of transmitter specification to engineering synaptic rescue strategies.</p>
+      <ul class="position-list">
+        <li>Background in neuroscience, cell biology, biochemistry, or a related field</li>
+        <li>Experience with molecular or cellular techniques is a plus but not required</li>
+        <li>Strong interest in mechanistic questions at the synapse</li>
+        <li>Enthusiasm for working across model systems</li>
+      </ul>
+    </div>
+    <div class="position-right">
+      <h4>How to apply</h4>
+      <ol class="position-steps">
+        <li><span class="step-n">1.</span><span>Apply through the RIT graduate admissions portal and indicate interest in the Godavarthi Lab.</span></li>
+        <li><span class="step-n">2.</span><span>Email Dr. Godavarthi directly with your CV and a brief statement of your research interests.</span></li>
+        <li><span class="step-n">3.</span><span>We will reach out to schedule an informal conversation about fit and research direction.</span></li>
+      </ol>
+      <a href="mailto:skgodavarthi@pitt.edu?subject=Graduate%20Student%20Inquiry%20%E2%80%94%20Godavarthi%20Lab" class="btn-apply">Email Dr. Godavarthi →</a>
+    </div>
+  </div>
+
+  <!-- POSTDOCS -->
+  <div class="position-block">
+    <div>
+      <span class="position-label">Postdoctoral Researchers</span>
+      <div class="position-title">Postdoc positions <em>coming soon</em></div>
+      <span class="position-tag soon">Not currently recruiting</span>
+      <p class="position-desc">We welcome inquiries from postdoctoral candidates with a strong publication record and interest in synaptic biology, neurotransmitter identity, or related areas. Candidates with experience in electrophysiology, single-cell genomics, mouse genetics, or iPSC-derived neuron systems are particularly encouraged to apply.</p>
+      <p class="position-desc">We are committed to supporting postdocs in developing their independent research program and career goals.</p>
+      <ul class="position-list">
+        <li>PhD in neuroscience, cell biology, biochemistry, or related field</li>
+        <li>Strong publication record demonstrating independent thinking</li>
+        <li>Interest in developing an independent research direction within the lab's themes</li>
+      </ul>
+    </div>
+    <div class="position-right">
+      <h4>How to apply</h4>
+      <ol class="position-steps">
+        <li><span class="step-n">1.</span><span>Email Dr. Godavarthi with your CV, a brief cover letter describing your research interests and goals, and contact details for two references.</span></li>
+        <li><span class="step-n">2.</span><span>We will review applications on a rolling basis and reach out to schedule a conversation.</span></li>
+      </ol>
+      <a href="mailto:skgodavarthi@pitt.edu?subject=Postdoc%20Inquiry%20%E2%80%94%20Godavarthi%20Lab" class="btn-apply">Email Dr. Godavarthi →</a>
+    </div>
+  </div>
+
+</div>
+
+<hr class="divider">
+<footer>
+  <span>Godavarthi Laboratory · RIT Integrated Sciences Academy · Est. 2026</span>
+  <span><a href="mailto:skgodavarthi@pitt.edu">skgodavarthi@pitt.edu</a></span>
+</footer>
+
+</body>
+</html>

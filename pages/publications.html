@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications — The Godavarthi Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#F7F4EE; --white:#FEFCF8; --ink:#1A1916; --ink-mid:#4B4840;
+  --ink-soft:#908D84; --sage:#4A7A62; --sage-pale:#EAF2ED;
+  --terra:#B85C35; --terra-pale:#F5EAE3;
+  --border:rgba(26,25,22,0.10); --border-mid:rgba(26,25,22,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,238,0.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 3rem;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:400;color:var(--ink);text-decoration:none;}
+.nav-brand span{font-style:italic;color:var(--sage);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:0.82rem;font-weight:400;letter-spacing:0.03em;color:var(--ink-mid);text-decoration:none;transition:color 0.18s;}
+.nav-links a:hover,.nav-links a.active{color:var(--sage);}
+.section{padding:5.5rem 3rem;max-width:1100px;margin:0 auto;}
+.divider{border:none;border-top:1px solid var(--border);}
+.eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem;display:block;}
+h2{font-family:'Libre Baskerville',serif;font-size:2.3rem;font-weight:400;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);}
+h2 em{font-style:italic;color:var(--sage);}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;color:var(--ink-soft);}
+footer a{color:var(--sage);text-decoration:none;}
+
+.page-hero{padding:5rem 3rem 4rem;max-width:1100px;margin:0 auto;border-bottom:1px solid var(--border);}
+.page-hero h1{font-family:'Libre Baskerville',serif;font-size:3rem;font-weight:400;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1.25rem;max-width:700px;}
+.page-hero h1 em{font-style:italic;color:var(--sage);}
+.page-hero p{font-size:1rem;color:var(--ink-mid);max-width:560px;line-height:1.85;}
+
+/* YEAR GROUPS */
+.pub-year-group { margin-bottom:3.5rem; }
+.pub-year {
+  font-family:'Libre Baskerville',serif;
+  font-size:1.5rem; font-weight:400; font-style:italic;
+  color:var(--ink-soft); margin-bottom:1.5rem;
+  padding-bottom:0.5rem; border-bottom:1px solid var(--border);
+}
+
+/* PUB ENTRY */
+.pub-entry {
+  display:grid; grid-template-columns:2.5rem 1fr;
+  gap:1.5rem; padding:1.5rem 0;
+  border-bottom:1px solid var(--border);
+}
+.pub-entry:last-child { border-bottom:none; }
+.pub-num {
+  font-family:'Libre Baskerville',serif;
+  font-size:0.9rem; font-style:italic; color:var(--ink-soft);
+  padding-top:0.15rem;
+}
+.pub-title {
+  font-family:'Libre Baskerville',serif;
+  font-size:1rem; font-weight:400; line-height:1.5;
+  color:var(--ink); margin-bottom:0.4rem;
+}
+.pub-title a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--border-mid); transition:border-color 0.18s; }
+.pub-title a:hover { border-color:var(--sage); color:var(--sage); }
+.pub-authors { font-size:0.85rem; color:var(--ink-mid); line-height:1.6; margin-bottom:0.35rem; }
+.pub-authors strong { color:var(--ink); font-weight:500; }
+.pub-journal {
+  font-size:0.82rem; color:var(--ink-soft);
+  font-style:italic;
+}
+.pub-badge {
+  display:inline-block; margin-left:0.75rem;
+  font-size:0.65rem; font-weight:500; letter-spacing:0.06em;
+  text-transform:uppercase; font-style:normal;
+  background:var(--sage-pale); color:var(--sage);
+  padding:0.2rem 0.6rem; border-radius:2px;
+  vertical-align:middle;
+}
+.pub-badge.terra { background:var(--terra-pale); color:var(--terra); }
+
+/* PROFILES LINKS */
+.profile-links {
+  display:flex; gap:1rem; flex-wrap:wrap;
+  margin-top:2rem; padding-top:2rem;
+  border-top:1px solid var(--border);
+}
+.profile-links a {
+  font-size:0.82rem; color:var(--sage);
+  text-decoration:none; border:1px solid var(--sage);
+  padding:0.4rem 1rem; border-radius:3px;
+  transition:all 0.18s;
+}
+.profile-links a:hover { background:var(--sage); color:#fff; }
+
+@media(max-width:860px){
+  nav{padding:0 1.25rem;}
+  .section{padding:4rem 1.5rem;}
+  .page-hero{padding:3.5rem 1.5rem 3rem;}
+  .page-hero h1{font-size:2.2rem;}
+  .pub-entry{grid-template-columns:1fr;gap:0.5rem;}
+  .pub-num{display:none;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">the <span>Godavarthi</span> lab</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#research">research</a></li>
+    <li><a href="people.html">people</a></li>
+    <li><a href="publications.html" class="active">publications</a></li>
+    <li><a href="news.html">news</a></li>
+    <li><a href="joinus.html">JOIN US</a></li>
+    <li><a href="../index.html#contact">contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <span class="eyebrow">Publications</span>
+  <h1>Research <em>output</em></h1>
+  <p>Selected publications from the Godavarthi Lab and from Dr. Godavarthi's prior work. Author names in bold indicate trainees. Full list available on Google Scholar and ORCID.</p>
+  <div class="profile-links" style="margin-top:1.5rem;padding-top:1.5rem;">
+    <a href="https://orcid.org/0000-0003-4665-4627" target="_blank">ORCID ↗</a>
+    <a href="https://scholar.google.com/citations?user=E4t7wzQAAAAJ&hl=en" target="_blank">Google Scholar</a>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Godavarthi+SK" target="_blank">PubMed ↗</a>
+  </div>
+</div>
+
+<div class="section">
+
+  <!-- 2024 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2024</div>
+
+    <div class="pub-entry">
+      <div class="pub-num">1.</div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.1073/pnas.2406928121" target="_blank">Embryonic exposure to environmental factors drives transmitter switching in neonatal mouse cortex causing autistic-like adult behavior</a>
+          <span class="pub-badge terra">PNAS</span>
+        </div>
+        <div class="pub-authors"><strong>Godavarthi SK</strong>, Li H, Pratelli M, Spitzer NC</div>
+        <div class="pub-journal">Proceedings of the National Academy of Sciences, 2024. 121(35) e2406928121</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="pub-num">2.</div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.1073/pnas.2318041121" target="_blank">Postsynaptic receptors regulate presynaptic neurotransmitter stability through transsynaptic bridges</a>
+          <span class="pub-badge terra">PNAS</span>
+        </div>
+        <div class="pub-authors"><strong>Godavarthi SK</strong>, Hiramoto M, Ignatyev Y, Levin JB, Li H, Pratelli M, Borchardt J, Czajkowski C, Borodinsky LN, Sweeney L, Cline HT, Spitzer NC</div>
+        <div class="pub-journal">Proceedings of the National Academy of Sciences, 2024. 121(15) e2318041121</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="pub-num">3.</div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.1126/science.adh8488" target="_blank">Generalized fear after acute stress is caused by change in neuronal co-transmitter identity</a>
+          <span class="pub-badge">Science</span>
+        </div>
+        <div class="pub-authors">Li H, Jiang W, Lily Ling, Gupta V, Chen C, Pratelli M, <strong>Godavarthi SK</strong>, Spitzer NC</div>
+        <div class="pub-journal">Science, 2024. 383(6688) 1252–1259</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div class="pub-num">4.</div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.1038/s41467-024-52548-5" target="_blank">Drug induced change in transmitter identity is a shared mechanism generating cognitive deficits</a>
+          <span class="pub-badge">Nature Communications</span>
+        </div>
+        <div class="pub-authors">Pratelli M, Thacker A, Li H, <strong>Godavarthi S</strong>, Spitzer NC</div>
+        <div class="pub-journal">Nature Communications, 2024. 15, 8260</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 2020 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2020</div>
+    <div class="pub-entry">
+      <div class="pub-num">5.</div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.1523/JNEUROSCI.0005-20.2020" target="_blank">Decoding Neurotransmitter Switching: The Road Forward</a>
+        </div>
+        <div class="pub-authors">Li H, Pratelli M, <strong>Godavarthi SK</strong>, Zambetti S, Spitzer NC</div>
+        <div class="pub-journal">Journal of Neuroscience, 2020. 40(21) 4078–4089</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2015 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2015</div>
+    <div class="pub-entry">
+      <div class="pub-num">6.</div>
+      <div>
+        <div class="pub-title">Impaired adult hippocampal neurogenesis and its partial reversal by chronic treatment of fluoxetine in a mouse model of Angelman syndrome</div>
+        <div class="pub-authors"><strong>Godavarthi SK</strong>, Dey P, Sharma A, Jana NR</div>
+        <div class="pub-journal">Biochemical and Biophysical Research Communications, 2015. 464(4):1196–1201</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2014 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2014</div>
+    <div class="pub-entry">
+      <div class="pub-num">7.</div>
+      <div>
+        <div class="pub-title">Reversal of reduced parvalbumin neurons in hippocampus and amygdala of Angelman Syndrome model mice by chronic treatment of fluoxetine</div>
+        <div class="pub-authors"><strong>Godavarthi SK</strong>, Sharma A, Jana NR</div>
+        <div class="pub-journal">Journal of Neurochemistry, 2014. doi: 10.1111/jnc.12726</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2012 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2012</div>
+    <div class="pub-entry">
+      <div class="pub-num">8.</div>
+      <div>
+        <div class="pub-title">Defective glucocorticoid hormone receptor signaling leads to increased stress and anxiety in a mouse model of Angelman syndrome</div>
+        <div class="pub-authors"><strong>Godavarthi SK</strong>, Dey P, Maheshwari M, Jana NR</div>
+        <div class="pub-journal">Human Molecular Genetics, 2012. 21(8) 1824–1834</div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-num">9.</div>
+      <div>
+        <div class="pub-title">Dysfunction of the ubiquitin ligase Ube3a may be associated with synaptic pathophysiology in a mouse model of Huntington disease</div>
+        <div class="pub-authors">Maheshwari M, Samanta A, <strong>Godavarthi SK</strong>, Mukherjee R, Jana NR</div>
+        <div class="pub-journal">Journal of Biological Chemistry, 2012. 287(35) 29949–29957</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2009 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2009</div>
+    <div class="pub-entry">
+      <div class="pub-num">10.</div>
+      <div>
+        <div class="pub-title">Induction of chemokines, MCP-1, and KC in the mutant huntingtin expressing neuronal cells because of proteasomal dysfunction</div>
+        <div class="pub-authors"><strong>Godavarthi SK</strong>, Narender D, Mishra A, Goswami A, Rao SNR, Nukina N, Jana NR</div>
+        <div class="pub-journal">Journal of Neurochemistry, 2009. 108(3) 787–795</div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-num">11.</div>
+      <div>
+        <div class="pub-title">UBE3A/E6-AP regulates cell proliferation by promoting proteasomal degradation of p27</div>
+        <div class="pub-authors">Mishra A, <strong>Godavarthi SK</strong>, Jana NR</div>
+        <div class="pub-journal">Neurobiology of Disease, 2009. 36(1) 26–34</div>
+      </div>
+    </div>
+    <div class="pub-entry">
+      <div class="pub-num">12.</div>
+      <div>
+        <div class="pub-title">The ubiquitin ligase E6-AP is induced and recruited to aggresomes in response to proteasome inhibition and may be involved in the ubiquitination of Hsp70-bound misfolded proteins</div>
+        <div class="pub-authors">Mishra A, <strong>Godavarthi SK</strong>, Maheshwari M, Goswami A, Jana NR</div>
+        <div class="pub-journal">Journal of Biological Chemistry, 2009. 284(16) 10537–10545</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="divider">
+<footer>
+  <span>The Godavarthi Lab · RIT Integrated Sciences Academy · Est. 2026</span>
+  <span><a href="mailto:skgodavarthi@pitt.edu">skgodavarthi@pitt.edu</a></span>
+</footer>
+
+</body>
+</html>

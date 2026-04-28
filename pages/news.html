@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News — The Godavarthi Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#F7F4EE; --white:#FEFCF8; --ink:#1A1916; --ink-mid:#4B4840;
+  --ink-soft:#908D84; --sage:#4A7A62; --sage-pale:#EAF2ED;
+  --terra:#B85C35; --terra-pale:#F5EAE3;
+  --border:rgba(26,25,22,0.10); --border-mid:rgba(26,25,22,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;}
+nav{position:sticky;top:0;z-index:100;background:rgba(247,244,238,0.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 3rem;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:400;color:var(--ink);text-decoration:none;}
+.nav-brand span{font-style:italic;color:var(--sage);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:0.82rem;font-weight:400;letter-spacing:0.03em;color:var(--ink-mid);text-decoration:none;transition:color 0.18s;}
+.nav-links a:hover,.nav-links a.active{color:var(--sage);}
+.section{padding:5.5rem 3rem;max-width:1100px;margin:0 auto;}
+.divider{border:none;border-top:1px solid var(--border);}
+.eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem;display:block;}
+h2{font-family:'Libre Baskerville',serif;font-size:2.3rem;font-weight:400;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);}
+footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;color:var(--ink-soft);}
+footer a{color:var(--sage);text-decoration:none;}
+
+.page-hero{padding:5rem 3rem 4rem;max-width:1100px;margin:0 auto;border-bottom:1px solid var(--border);}
+.page-hero h1{font-family:'Libre Baskerville',serif;font-size:3rem;font-weight:400;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1.25rem;max-width:700px;}
+.page-hero h1 em{font-style:italic;color:var(--sage);}
+.page-hero p{font-size:1rem;color:var(--ink-mid);max-width:560px;line-height:1.85;}
+
+/* NEWS ENTRIES */
+.news-list { margin-top:3rem; }
+.news-entry {
+  display:grid; grid-template-columns:120px 1fr;
+  gap:2.5rem; padding:2.5rem 0;
+  border-bottom:1px solid var(--border);
+  align-items:start;
+}
+.news-entry:first-child { padding-top:0; }
+.news-date {
+  font-size:0.78rem; color:var(--ink-soft);
+  font-weight:500; letter-spacing:0.04em;
+  padding-top:0.2rem;
+}
+.news-title {
+  font-family:'Libre Baskerville',serif;
+  font-size:1.1rem; font-weight:400; line-height:1.4;
+  color:var(--ink); margin-bottom:0.5rem;
+}
+.news-body {
+  font-size:0.92rem; color:var(--ink-mid); line-height:1.75;
+}
+.news-body a { color:var(--sage); text-decoration:none; border-bottom:1px solid rgba(74,122,98,0.3); }
+.news-body a:hover { border-color:var(--sage); }
+.news-tag {
+  display:inline-block; margin-top:0.75rem;
+  font-size:0.65rem; font-weight:500; letter-spacing:0.08em;
+  text-transform:uppercase; background:var(--sage-pale);
+  color:var(--sage); padding:0.2rem 0.65rem; border-radius:2px;
+}
+.news-tag.terra { background:var(--terra-pale); color:var(--terra); }
+
+@media(max-width:860px){
+  nav{padding:0 1.25rem;}
+  .section{padding:4rem 1.5rem;}
+  .page-hero{padding:3.5rem 1.5rem 3rem;}
+  .page-hero h1{font-size:2.2rem;}
+  .news-entry{grid-template-columns:1fr;gap:0.5rem;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;}
+}
+.news-content {
+  display:grid; grid-template-columns:160px 1fr;
+  gap:1.5rem; align-items:start;
+}
+.news-thumb {
+  width:160px;
+  border-radius:4px; overflow:hidden;
+  background:var(--sage-pale);
+}
+.news-thumb img {
+  width:100%; height:auto; object-fit:cover;
+}
+.news-text { flex:1; }
+.news-coverage {
+  margin-top:0.75rem;
+  display:flex; flex-wrap:wrap; align-items:center; gap:0.5rem;
+}
+.coverage-label {
+  font-size:0.72rem; color:var(--ink-soft);
+  font-weight:500; letter-spacing:0.04em;
+}
+.news-coverage a {
+  font-size:0.72rem; color:var(--sage);
+  text-decoration:none; border:1px solid var(--sage);
+  padding:0.2rem 0.6rem; border-radius:3px;
+  transition:all 0.18s;
+}
+.news-coverage a:hover { background:var(--sage); color:#fff; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">the <span>Godavarthi</span> lab</a>
+  <ul class="nav-links">
+    <li><a href="../index.html#research">research</a></li>
+    <li><a href="people.html">people</a></li>
+    <li><a href="publications.html">publications</a></li>
+    <li><a href="news.html" class="active">news</a></li>
+    <li><a href="joinus.html">JOIN US</a></li>
+    <li><a href="../index.html#contact">contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <span class="eyebrow">News</span>
+  <h1>Lab <em>updates</em></h1>
+  <p>News, announcements, and highlights from the Godavarthi Lab at RIT.</p>
+</div>
+
+<div class="section">
+  <div class="news-list">
+
+    <!-- LAB NEWS -->
+    <div class="news-entry">
+      <div class="news-date">August 2026</div>
+      <div class="news-content">
+        <div class="news-thumb">
+          <img src="../images/RIT.png" alt="RIT campus">
+        </div>
+        <div class="news-text">
+          <span class="news-tag">lab news</span>
+          <div class="news-title">The Godavarthi Lab officially opens at RIT</div>
+          <div class="news-body">We are thrilled to begin our work at the Integrated Sciences Academy, College of Science, Rochester Institute of Technology.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AWARD -->
+    <div class="news-entry">
+      <div class="news-date">April 2026</div>
+      <div class="news-content">
+        <div class="news-text" style="width:100%;">
+          <span class="news-tag">award</span>
+          <div class="news-title">Dr. Godavarthi joins RIT as Simons Foundation Empire Faculty Fellow</div>
+          <div class="news-body">Dr. Godavarthi has accepted a tenure-track position as Assistant Professor of Neuroscience at the Integrated Sciences Academy, supported by the Simons Foundation Empire Faculty Fellowship Program. The lab will open in August 2026.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PNAS AUTISM -->
+    <div class="news-entry">
+      <div class="news-date">September 2024</div>
+      <div class="news-content">
+        <div class="news-thumb">
+          <img src="../images/autism.jpg" alt="Autism neurotransmitter switching">
+        </div>
+        <div class="news-text">
+          <span class="news-tag terra">new paper</span>
+          <div class="news-title">New paper: Environmental factors drive transmitter switching causing autism-like behavior</div>
+          <div class="news-body">Our work showing that prenatal immune activation drives GABA-to-glutamate switching in prefrontal cortex interneurons — and that this switch causally produces autism-like social and behavioral deficits in adult mice — is now published in <em>PNAS</em>. Critically, overriding the switch in neonates prevents the adult behavioral deficits. <a href="https://doi.org/10.1073/pnas.2406928121" target="_blank">Read the paper ↗</a></div>
+          <div class="news-coverage">
+            <span class="coverage-label">In the news:</span>
+            <a href="https://today.ucsd.edu/story/autism-spectrum-disorders-linked-to-neurotransmitter-switching-in-the-brain" target="_blank">UC San Diego Today ↗</a>
+            <a href="https://www.psypost.org/neurotransmitter-switching-in-early-development-predicts-autism-related-behaviors/" target="_blank">PsyPost ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PNAS TRANSSYNAPTIC BRIDGES -->
+    <div class="news-entry">
+      <div class="news-date">April 2024</div>
+      <div class="news-content">
+        <div class="news-thumb">
+          <img src="../images/tadpole.jpg" alt="Transsynaptic bridges">
+        </div>
+        <div class="news-text">
+          <span class="news-tag terra">new paper</span>
+          <div class="news-title">New paper: Postsynaptic receptors regulate presynaptic identity through transsynaptic bridges</div>
+          <div class="news-body">We demonstrate that postsynaptic neurotransmitter receptors actively stabilize presynaptic transmitter identity through receptor-specific transsynaptic adhesion complexes — defining a new molecular mechanism for how transmitter-receptor pairs are specified and maintained at synapses. Published in <em>PNAS</em>. <a href="https://doi.org/10.1073/pnas.2318041121" target="_blank">Read the paper ↗</a></div>
+          <div class="news-coverage">
+            <span class="coverage-label">In the news:</span>
+            <a href="https://www.growkudos.com/publications/10.1073%252Fpnas.2318041121/reader" target="_blank">Growkudos ↗</a>
+            <a href="https://www.the-scientist.com/the-scientist-s-journal-club-neuroscience-71114" target="_blank">The Scientist ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+  <!-- placeholder note -->
+  <p style="margin-top:3rem;font-size:0.85rem;color:var(--ink-soft);font-style:italic;">
+    <!-- Add future news entries above this line. Copy the .news-entry block and update the date, title, body, and tag. -->
+  </p>
+</div>
+
+<hr class="divider">
+<footer>
+  <span>The Godavarthi Lab · RIT Integrated Sciences Academy · Est. 2026</span>
+  <span><a href="mailto:skgodavarthi@pitt.edu">skgodavarthi@pitt.edu</a></span>
+</footer>
+
+</body>
+</html>

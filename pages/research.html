@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Godavarthi Laboratory</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F7F4EE;--white:#FEFCF8;--ink:#1A1916;--ink-mid:#4B4840;
+  --ink-soft:#908D84;--sage:#4A7A62;--sage-pale:#EAF2ED;
+  --terra:#B85C35;--terra-pale:#F5EAE3;
+  --magenta:#C0379A;--magenta-pale:#F7E5F2;
+  --border:rgba(26,25,22,0.10);--border-mid:rgba(26,25,22,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 3rem;height:64px;display:flex;align-items:center;justify-content:space-between;transition:background 0.3s,border-color 0.3s;border-bottom:1px solid transparent;}
+nav.scrolled{background:rgba(247,244,238,0.96);backdrop-filter:blur(12px);border-bottom-color:var(--border);box-shadow:0 1px 12px rgba(26,25,22,0.06);}
+.nav-brand{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:400;color:#fff;text-decoration:none;transition:color 0.3s;}
+nav.scrolled .nav-brand{color:var(--ink);}
+.nav-brand span{font-style:italic;}
+nav.scrolled .nav-brand span{color:var(--sage);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.08em;color:rgba(255,255,255,0.82);text-decoration:none;transition:color 0.18s;}
+nav.scrolled .nav-links a{color:var(--ink-mid);}
+nav.scrolled .nav-links a.active{color:var(--sage);}
+nav.scrolled .nav-links a:hover{color:var(--sage);}
+
+/* PAGE HERO */
+.page-hero {
+  position:relative;
+  height:60vh;
+  min-height:400px;
+  overflow:hidden;
+}
+.page-hero::after {
+  display:none;
+}
+.hero-bg {
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.hero-collage {
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+/* CONTENT */
+.content{max-width:1080px;margin:0 auto;padding:5rem 3rem 6rem;}
+
+/* OVERVIEW */
+.overview-eyebrow{font-size:1rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-bottom:0.75rem;display:block;}
+.overview-title{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:400;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1.5rem;text-align:center;white-space:nowrap;}
+.overview-title em{font-style:italic;color:var(--sage);}
+.overview-grid{display:block;margin-bottom:5rem;}
+.overview-body p{font-size:1.3rem;color:var(--ink-mid);line-height:1.85;margin-bottom:1rem;}
+.overview-body p:last-child{margin-bottom:0;}
+.overview-body em{font-style:italic;color:var(--ink);}
+
+.overview-bullets{
+  list-style:none;
+  margin:0.25rem 0 1.25rem 0;
+  display:flex;flex-direction:column;gap:0.6rem;
+}
+.overview-bullets li{
+  display:flex;align-items:baseline;gap:0.75rem;
+  font-size:1.3rem;color:var(--ink-mid);line-height:1.5;
+}
+.overview-bullets li::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--sage);flex-shrink:0;margin-top:0.4rem;
+}
+.overview-bullets li strong{color:var(--ink);font-weight:500;}
+
+.overview-closer{
+  font-size:0.92rem;color:var(--ink-soft);
+  font-style:italic;margin-top:0.5rem !important;
+}
+
+.para-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2rem;align-items:center;
+  margin-bottom:1.75rem;
+}
+.para-img img{width:100%;display:block;border-radius:4px;}
+.para-text p{font-size:1.3rem;color:var(--ink-mid);line-height:1.85;}
+.para-text strong{color:var(--ink);font-weight:600;}
+
+.model-systems-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2rem;align-items:center;
+  margin-top:2.5rem;
+  padding-top:2rem;
+}
+.model-systems-img img{width:100%;border-radius:4px;display:block;}
+.model-systems-text p{
+  font-size:1.3rem;color:var(--ink-mid);line-height:1.85;
+}
+.model-systems-text em{font-style:italic;color:var(--ink);}
+
+/* SCHEMATIC PANEL */
+.schematic-box{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.75rem 1.5rem;}
+.schematic-title{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-bottom:1.25rem;}
+.schematic-caption{font-size:0.78rem;color:var(--ink-soft);line-height:1.6;text-align:center;font-style:italic;margin-top:1rem;}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 3.5rem;}
+
+/* CARDS SECTION */
+.cards-section-eyebrow{font-size:1rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-bottom:0.75rem;display:block;}
+.cards-section-title{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:400;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);margin-bottom:2rem;}
+.cards-section-title em{font-style:italic;color:var(--sage);}
+
+/* THREE CARDS IN ONE ROW */
+.cards-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+  margin-bottom:1.5rem;
+}
+.project-card{
+  background:var(--white);border:1.5px solid var(--border);border-radius:6px;
+  cursor:pointer;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s;
+}
+.project-card:hover{border-color:var(--sage);box-shadow:0 6px 28px rgba(74,122,98,0.12);transform:translateY(-2px);}
+.project-card.active{border-color:var(--sage);box-shadow:0 4px 20px rgba(74,122,98,0.1);}
+.project-card.terra:hover{border-color:var(--terra);}
+.project-card.terra.active{border-color:var(--terra);}
+.project-card.magenta-card:hover{border-color:var(--magenta);}
+.project-card.magenta-card.active{border-color:var(--magenta);}
+
+.card-header{padding:1.75rem;display:flex;flex-direction:column;gap:0.85rem;flex:1;}
+.card-num{font-family:'Libre Baskerville',serif;font-size:0.78rem;font-style:italic;color:var(--ink-soft);}
+.card-kw{display:inline-block;font-size:0.63rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.22rem 0.65rem;border-radius:2px;background:var(--sage-pale);color:var(--sage);align-self:flex-start;}
+.card-kw.terra{background:var(--terra-pale);color:var(--terra);}
+.card-kw.magenta{background:var(--magenta-pale);color:var(--magenta);}
+.card-q{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:400;line-height:1.4;color:var(--ink);}
+.card-q em{font-style:italic;color:var(--terra);}
+.card-dtags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:auto;padding-top:0.5rem;}
+.tag-disease{font-size:0.65rem;font-weight:500;background:var(--terra-pale);color:var(--terra);padding:0.2rem 0.6rem;border-radius:2px;}
+.tag-disease.sage{background:var(--sage-pale);color:var(--sage);}
+.tag-disease.magenta{background:var(--magenta-pale);color:var(--magenta);}
+
+.card-foot{
+  padding:0.8rem 1.75rem;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:0.73rem;font-weight:500;letter-spacing:0.04em;
+  color:var(--sage);background:var(--cream);
+  transition:background 0.18s,color 0.18s;
+}
+.project-card:hover .card-foot{background:var(--sage-pale);}
+.project-card.active .card-foot{background:var(--sage);color:#fff;}
+.project-card.terra:hover .card-foot{color:var(--terra);}
+.project-card.terra.active .card-foot{background:var(--terra);color:#fff;}
+.project-card.magenta-card:hover .card-foot{color:var(--magenta);}
+.project-card.magenta-card.active .card-foot{background:var(--magenta);color:#fff;}
+.chevron{width:16px;height:16px;transition:transform 0.25s;}
+.project-card.active .chevron{transform:rotate(180deg);}
+
+/* DETAIL PANELS */
+.detail-area{
+  background:#ffffff;border:1.5px solid var(--border);
+  border-radius:6px;overflow:hidden;
+  display:none;margin-bottom:1.5rem;
+}
+.detail-area.visible{display:block;animation:fadeUp 0.25s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+
+.detail-header{
+  padding:1.5rem 2.5rem;
+  display:flex;align-items:center;gap:1.25rem;
+  border-bottom:1px solid var(--border);
+}
+.detail-badge{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:3px;background:var(--sage-pale);color:var(--sage);}
+.detail-badge.terra{background:var(--terra-pale);color:var(--terra);}
+.detail-badge.magenta{background:var(--magenta-pale);color:var(--magenta);}
+.detail-title{font-family:'Libre Baskerville',serif;font-size:1.15rem;font-weight:400;line-height:1.35;color:var(--ink);}
+.detail-title em{font-style:italic;color:var(--terra);}
+
+.detail-body-grid{display:grid;grid-template-columns:1fr;gap:0;}
+.detail-left{padding:2rem 2.5rem;border-right:none;}
+.detail-right{padding:2rem 2.5rem;}
+
+.detail-section-title{font-size:0.67rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:0.85rem;display:block;}
+.detail-text{font-size:0.92rem;color:var(--ink-mid);line-height:1.85;margin-bottom:1.25rem;text-align:justify;}
+.detail-text em{font-style:italic;color:var(--ink);}
+.detail-text:last-child{margin-bottom:0;}
+
+.tags-wrap{display:flex;flex-wrap:wrap;gap:0.45rem;margin-bottom:1.5rem;}
+.tag-method{font-size:0.71rem;border:1px solid var(--border-mid);padding:0.28rem 0.7rem;border-radius:3px;color:var(--ink-mid);}
+.tag-model{font-size:0.71rem;background:var(--sage-pale);color:var(--sage);padding:0.28rem 0.7rem;border-radius:3px;font-weight:500;}
+
+.relevance-box{background:var(--terra-pale);border-radius:4px;padding:1.1rem 1.25rem;margin-top:1.25rem;}
+.relevance-box .detail-section-title{color:var(--terra);margin-bottom:0.5rem;}
+.relevance-text{font-size:0.85rem;color:var(--ink-mid);line-height:1.7;}
+.pub-text{font-size:0.83rem;color:var(--ink-mid);line-height:1.7;font-style:italic;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;color:var(--ink-soft);}
+footer a{color:var(--sage);text-decoration:none;}
+
+@media(max-width:900px){
+  nav{padding:0 1.25rem;}
+  .nav-links{gap:1rem;}
+  .nav-links a{font-size:0.7rem;letter-spacing:0.05em;}
+  .content{padding:3.5rem 1.5rem 4rem;}
+  .overview-grid{grid-template-columns:1fr;gap:3rem;}
+  .cards-row{grid-template-columns:1fr;}
+  .detail-body-grid{grid-template-columns:1fr;}
+  .detail-left{border-right:none;border-bottom:1px solid var(--border);}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;}
+}
+.collage-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  width:100%;
+  height:100%;
+  position:absolute;
+  inset:0;
+}
+.collage-grid img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.collage-overlay {
+  position:absolute;
+  inset:0;
+  background:rgba(10,18,14,0.45);
+  z-index:1;
+}
+.hero-text {
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+}
+.hero-text h1 {
+  font-family:'Libre Baskerville', serif;
+  font-size:3rem;
+  font-weight:400;
+  color:#fff;
+  text-align:center;
+}
+
+/* TRIANGLE LAYOUT */
+.tri-wrap { position:relative; width:100%; margin-top:2rem; }
+.card-a { position:absolute; background:var(--white); border-radius:12px; border:1px solid var(--border); padding:14px 16px; width:185px; }
+.theme-label { font-size:0.7rem; color:var(--ink-soft); font-weight:500; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; }
+.card-kw-tri { font-size:0.95rem; font-weight:500; color:var(--ink); margin-bottom:6px; }
+.card-q-tri { font-size:0.78rem; color:var(--ink-mid); line-height:1.5; margin-bottom:8px; }
+.card-tags-tri { display:flex; flex-wrap:wrap; gap:3px; margin-bottom:8px; }
+.tag-s { font-size:0.65rem; padding:2px 8px; border-radius:20px; font-weight:500; }
+.tag-sage { background:var(--sage-pale); color:var(--sage); }
+.tag-terra { background:var(--terra-pale); color:var(--terra); }
+.tag-mag { background:var(--magenta-pale); color:var(--magenta); }
+.card-more { font-size:0.72rem; color:var(--sage); cursor:pointer; border-top:0.5px solid var(--border); padding-top:6px; }
+.card-more:hover { text-decoration:underline; }
+.center-gif { position:absolute; width:130px; height:130px; border-radius:50%; overflow:hidden; border:1px solid var(--border); transform:translate(-50%,-50%); }
+.corner-dot { position:absolute; width:10px; height:10px; border-radius:50%; background:var(--ink-soft); transform:translate(-50%,-50%); }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="../index.html" class="nav-brand">Godavarthi <span>Laboratory</span></a>
+  <ul class="nav-links">
+    <li><a href="research.html" class="active">RESEARCH</a></li>
+    <li><a href="people.html">PEOPLE</a></li>
+    <li><a href="publications.html">PUBLICATIONS</a></li>
+    <li><a href="news.html">NEWS</a></li>
+    <li><a href="joinus.html">JOIN US</a></li>
+    <li><a href="../index.html#contact">CONTACT</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="width:100%; height:40vw; overflow:hidden; position:relative;">
+  <img src="../images/collage.jpg" style="width:100%; height:100%; object-fit:cover;">
+  <div style="position:absolute; inset:0; background:rgba(10,18,14,0.15);"></div>
+  <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:flex-start; padding-left:4rem;">
+    <h1 style="font-family:'Libre Baskerville',serif; font-size:3rem; font-weight:400; color:#fff; text-align:center;">Research Interests</h1>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- OVERVIEW + SCHEMATIC -->
+  <div class="overview-grid">
+    <div>
+      <span class="overview-eyebrow">Research Overview</span>
+      <h2 class="overview-title">Neurotransmitter phenotype of a synapse is a <em>combinatorial matching problem</em></h2>
+      <div class="overview-body">
+        <!-- PARAGRAPH 1: diagram left, text right -->
+        <div class="para-row">
+          <div class="para-img">
+            <img src="../images/MatchingNTtoNTRs.png">
+          </div>
+          <div class="para-text">
+            <p>Synaptic function depends on correct <strong>matching</strong> of neurotransmitters with their receptors.</p>
+          </div>
+        </div>
+        <div class="para-row">
+  <div class="para-img">
+    <img src="../images/matchingproblem.gif" style="width:100%; border-radius:4px;">
+  </div>
+  <div class="para-text">
+    <p>Every synapse must:</p>
+    <ul class="overview-bullets">
+      <li><strong>Specify</strong> the right neurotransmitter</li>
+      <li><strong>Stabilize</strong> that identity across development and experience</li>
+      <li><strong>Modify</strong> it when circuits need to adapt</li>
+    </ul>
+    <p class="overview-closer">These processes operate throughout the life of the animal. We study the molecular logic behind all three.</p>
+  </div>
+</div>
+
+      <!-- MODEL SYSTEMS ROW -->
+<div class="model-systems-row">
+  <div class="model-systems-text">
+    <p>We work in <em>Xenopus laevis</em>, mouse, and human iPSC-derived neurons, tracking conserved mechanisms and building toward new therapies.</p>
+  </div>
+  <div class="model-systems-img">
+    <img src="../images/modelsystems.png" style="width:100%; border-radius:4px;">
+  </div>
+</div>
+
+  
+ <!-- RESEARCH THEMES TRIANGLE -->
+<span class="cards-section-eyebrow">Research Themes</span>
+
+<div class="tri-wrap" id="triWrap">
+  <svg id="triSvg" style="position:absolute;top:0;left:0;width:100%;pointer-events:none;overflow:visible;"></svg>
+
+  <!-- THEME 1 — top -->
+  <div class="card-a" id="card1">
+    <div class="theme-label">Theme 1</div>
+    <div class="card-kw-tri">Rules</div>
+    <div class="card-q-tri">How do postsynaptic receptors <em>specify and stabilize</em> presynaptic transmitter identity?</div>
+    <div class="card-tags-tri">
+      <span class="tag-s tag-sage">Autism</span>
+      <span class="tag-s tag-sage">Schizophrenia</span>
+    </div>
+    <div class="card-more" onclick="toggleCard('pcard-1','pdetail-1')">Click for details →</div>
+  </div>
+
+  <!-- THEME 2 — bottom right -->
+  <div class="card-a" id="card2">
+    <div class="theme-label">Theme 2</div>
+    <div class="card-kw-tri">Leverage</div>
+    <div class="card-q-tri">Can receptor engineering <em>reprogram a synapse</em> to restore lost function?</div>
+    <div class="card-tags-tri">
+      <span class="tag-s tag-terra">Myasthenia gravis</span>
+      <span class="tag-s tag-terra">CMS</span>
+    </div>
+    <div class="card-more" onclick="toggleCard('pcard-2','pdetail-2')">Click for details →</div>
+  </div>
+
+  <!-- THEME 3 — bottom left -->
+  <div class="card-a" id="card3">
+    <div class="theme-label">Theme 3</div>
+    <div class="card-kw-tri">Constraints</div>
+    <div class="card-q-tri">What makes a neuron <em>susceptible to switching</em> its transmitter identity?</div>
+    <div class="card-tags-tri">
+      <span class="tag-s tag-mag">Autism</span>
+      <span class="tag-s tag-mag">PTSD</span>
+      <span class="tag-s tag-mag">Addiction</span>
+    </div>
+    <div class="card-more" onclick="toggleCard('pcard-3','pdetail-3')">Click for details →</div>
+  </div>
+
+  <!-- CENTER GIF -->
+  <div class="center-gif" id="centerGif">
+    <img src="../images/Researchtheme.png" style="width:100%;height:100%;object-fit:contain;border-radius:50%;">
+  </div>
+
+  <div class="corner-dot" id="dot1"></div>
+  <div class="corner-dot" id="dot2"></div>
+  <div class="corner-dot" id="dot3"></div>
+</div>
+
+<!-- DETAIL PANELS -->
+<div class="detail-area" id="pdetail-1">
+  <div class="detail-header">
+    <span class="detail-badge">Rules</span>
+    <div class="detail-title">How do postsynaptic receptors <em>specify and stabilize</em> presynaptic transmitter identity?</div>
+  </div>
+  <div class="detail-body-grid">
+  <div class="detail-left">
+    <span class="detail-section-title">The Science</span>
+    <div class="para-row">
+      <div class="para-img">
+        <img src="../images/Theme1a.jpg" style="width:100%; border-radius:4px;">
+      </div>
+      <div class="para-text">
+        <p class="detail-text">Every synapse must match its neurotransmitter to the right receptor. We discovered that this match is actively enforced — postsynaptic receptors send a retrograde signal back to the presynaptic neuron through dedicated transsynaptic bridges, stabilizing transmitter identity. Remove the receptor, and the presynaptic neuron loses its transmitter. Introduce a new one, and it switches.</p>
+      </div>
+    </div>
+    <div class="para-row">
+      <div class="para-text">
+        <p class="detail-text">But how does the presynaptic neuron read these signals and translate them into a stable transmitter choice? We are mapping the molecular logic of this decoding process — identifying the full interactome of these bridges and the transcriptional programs they activate. The scaffold protein CASK, recruited differentially by receptor type and capable of nuclear localization, is a key candidate decoder. Using proteomics, ChIP-Seq, and viral tools in <em>Xenopus</em> and mouse, we aim to define the rules by which receptor identity is converted into presynaptic gene expression.</p>
+      </div>
+      <div class="para-img">
+        <img src="../images/Theme1b.jpg" style="width:100%; border-radius:4px;">
+      </div>
+    </div>
+    <div class="relevance-box">
+      <span class="detail-section-title">Disease Relevance</span>
+      <p class="relevance-text">Imbalances in excitatory/inhibitory neurotransmission are central to autism spectrum disorder and schizophrenia. Understanding how receptor-transmitter pairs are specified reveals how this balance is established — and how to restore it.</p>
+    </div>
+    <div style="margin-top:2rem;">
+      <span class="detail-section-title">Approaches</span>
+      <div class="tags-wrap">
+        <span class="tag-method">Proteomics (LC-MS)</span>
+        <span class="tag-method">ChIP-Seq</span>
+        <span class="tag-method">Co-immunoprecipitation</span>
+        <span class="tag-method">Morpholino knockdown</span>
+        <span class="tag-method">Viral gene delivery</span>
+        <span class="tag-method">Confocal imaging</span>
+        <span class="tag-method">Electrophysiology</span>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;">
+      <span class="detail-section-title">Model Systems</span>
+      <div class="tags-wrap">
+        <span class="tag-model"><em>Xenopus laevis</em> NMJ</span>
+        <span class="tag-model">Mouse NMJ &amp; CNS</span>
+        <span class="tag-model">Human iPSC neurons</span>
+      </div>
+    </div>
+        <div style="margin-top:1.5rem;">
+      <span class="detail-section-title">Key Publication</span>
+      <p class="pub-text">Godavarthi SK et al. Postsynaptic receptors regulate presynaptic neurotransmitter stability through transsynaptic bridges. PNAS, 2024.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="detail-area" id="pdetail-2">
+  <div class="detail-header">
+    <span class="detail-badge terra">Leverage</span>
+    <div class="detail-title">Can receptor engineering <em>reprogram a synapse</em> to restore lost function?</div>
+  </div>
+  <div class="detail-body-grid">
+  <div class="detail-left">
+    <span class="detail-section-title">The Science</span>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start;">
+      <div>
+        <p class="detail-text">Myasthenia gravis is a disease of lost connection. The immune system destroys acetylcholine receptors at the neuromuscular junction — and without those receptors, the retrograde signal that tells the motor neuron to keep making acetylcholine disappears. The synapse goes silent. The muscle stops moving.</p>
+        <p class="detail-text">But what if you could rebuild the connection using a different receptor? We are testing whether introducing a non-canonical GABA receptor into muscle is enough to establish an entirely new transsynaptic bridge — switching the synapse from cholinergic to GABAergic and restoring transmission. Early data in <em>Xenopus</em> are promising. We are now extending this receptor engineering strategy to mouse models of myasthenia, toward a gene therapy that bypasses the immune system entirely.</p>
+      </div>
+      <div>
+        <img src="../images/TSBs.gif" style="width:100%; border-radius:4px;">
+      </div>
+    </div>
+    <div class="relevance-box">
+      <span class="detail-section-title">Disease Relevance</span>
+      <p class="relevance-text">Myasthenia gravis and congenital myasthenic syndrome are debilitating with no curative treatments. This approach offers synaptic repair through receptor-driven identity reprogramming — a fundamentally new therapeutic concept.</p>
+    </div>
+    <div style="margin-top:2rem;">
+      <span class="detail-section-title">Approaches</span>
+      <div class="tags-wrap">
+        <span class="tag-method">Viral gene delivery (AAV)</span>
+        <span class="tag-method">Receptor engineering</span>
+        <span class="tag-method">Electrophysiology (mEPPs)</span>
+        <span class="tag-method">Behavioral rescue assays</span>
+        <span class="tag-method">Pharmacology</span>
+        <span class="tag-method">Mouse NMJ whole-mount</span>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;">
+      <span class="detail-section-title">Model Systems</span>
+      <div class="tags-wrap">
+        <span class="tag-model"><em>Xenopus</em> NMJ</span>
+        <span class="tag-model">Mouse autoimmune MG</span>
+        <span class="tag-model">Congenital myasthenic models</span>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;">
+      <span class="detail-section-title">Key Publication</span>
+      <p class="pub-text">Godavarthi SK et al. Postsynaptic receptors regulate presynaptic neurotransmitter stability through transsynaptic bridges. PNAS, 2024.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="detail-area" id="pdetail-3">
+  <div class="detail-header">
+    <span class="detail-badge magenta">Constraints</span>
+    <div class="detail-title">What makes a neuron <em>susceptible to switching</em> its transmitter identity?</div>
+  </div>
+<div class="detail-body-grid">
+  <div class="detail-left">
+    <span class="detail-section-title">The Science</span>
+    <div class="para-row">
+      <div class="para-img">
+        <img src="../images/Theme3ab.jpg" style="width:100%; border-radius:4px;">
+      </div>
+      <div class="para-text">
+        <p class="detail-text">Neurotransmitter phenotype is not fixed. Under certain conditions — prenatal stress, acute trauma, drugs of abuse — neurons change their transmitter identity, and the consequences show up as autism, PTSD, and addiction. Intervening early can prevent these outcomes; intervening in adults can reverse them.</p>
+      </div>
+    </div>
+    <div class="para-row">
+      <div class="para-text">
+        <p class="detail-text">But the same stimulus does not affect all neurons equally. Only ~30% switch — the rest hold their identity. What determines whether a neuron's transmitter phenotype is stable or malleable? We are using single-cell profiling to compare permissive and resistant neurons in the same animal, searching for the molecular logic that governs this choice — and the handles needed to control it.</p>
+      </div>
+      <div class="para-img">
+        <img src="../images/Theme3c.jpg" style="width:100%; border-radius:4px;">
+      </div>
+    </div>
+    <div class="relevance-box">
+      <span class="detail-section-title">Disease Relevance</span>
+      <p class="relevance-text">Aberrant neurotransmitter switching contributes to autism (prenatal insults), PTSD (acute stress), and addiction (drugs of abuse). Identifying the molecular constraints opens new therapeutic avenues across all three.</p>
+    </div>
+    <div style="margin-top:2rem;">
+      <span class="detail-section-title">Approaches</span>
+      <div class="tags-wrap">
+        <span class="tag-method">Single-cell RNA-seq</span>
+        <span class="tag-method">Single-cell proteomics</span>
+        <span class="tag-method">Live-neuron cytoplasmic biopsy</span>
+        <span class="tag-method">Intersectional mouse genetics</span>
+        <span class="tag-method">Cre-dependent reporters</span>
+        <span class="tag-method">RNAscope in situ hybridization</span>
+        <span class="tag-method">Social behavior assays</span>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;">
+      <span class="detail-section-title">Model Systems</span>
+      <div class="tags-wrap">
+        <span class="tag-model">Mouse mPFC (Poly I:C)</span>
+        <span class="tag-model"><em>Xenopus</em> spinal neurons</span>
+        <span class="tag-model">Human iPSC neurons</span>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;">
+      <span class="detail-section-title">Key Publications</span>
+      <p class="pub-text">Godavarthi SK et al. Embryonic exposure to environmental factors drives transmitter switching causing autistic-like adult behavior. PNAS, 2024. · Li H, …Godavarthi SK et al. Generalized fear after acute stress caused by change in neuronal co-transmitter identity. Science, 2024.</p>
+    </div>
+  </div>
+</div>
+</div><!-- /content -->
+
+<script>
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>80),{passive:true});
+nav.classList.add('scrolled');
+
+function toggleCard(cardId, detailId) {
+  const detail = document.getElementById(detailId);
+  if (!detail) return;
+  const isOpen = detail.classList.contains('visible');
+  document.querySelectorAll('[id^="pdetail-"]').forEach(d=>d.classList.remove('visible'));
+  if (!isOpen) {
+    detail.classList.add('visible');
+    setTimeout(()=>detail.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+  }
+}
+
+function layoutTriangle() {
+  const wrap = document.getElementById('triWrap');
+  const c1 = document.getElementById('card1');
+  const c2 = document.getElementById('card2');
+  const c3 = document.getElementById('card3');
+  const svg = document.getElementById('triSvg');
+  const cc = document.getElementById('centerGif');
+  const cw = 185;
+  const ch = Math.max(c1.offsetHeight, c2.offsetHeight, c3.offsetHeight);
+  const W = wrap.offsetWidth;
+  const pad = 120;
+  const R = Math.min((W / 2) - pad, 220);
+  const cx = W / 2;
+  const totalH = R * 2 + ch * 2 + pad;
+  const cy = totalH / 2;
+  wrap.style.height = totalH + 'px';
+  const angles = [-Math.PI/2, -Math.PI/2 + 2*Math.PI/3, -Math.PI/2 + 4*Math.PI/3];
+  const corners = angles.map(a => ({
+    x: cx + R * Math.cos(a),
+    y: cy + R * Math.sin(a)
+  }));
+  ['dot1','dot2','dot3'].forEach((id,i) => {
+    const d = document.getElementById(id);
+    d.style.left = corners[i].x + 'px';
+    d.style.top = corners[i].y + 'px';
+  });
+  c1.style.left = (corners[0].x - cw/2) + 'px';
+  c1.style.top = (corners[0].y - ch - 16) + 'px';
+  c2.style.left = (corners[1].x + 16) + 'px';
+  c2.style.top = (corners[1].y - ch/2) + 'px';
+  c3.style.left = (corners[2].x - cw - 16) + 'px';
+  c3.style.top = (corners[2].y - ch/2) + 'px';
+  cc.style.left = cx + 'px';
+  cc.style.top = cy + 'px';
+  svg.setAttribute('viewBox', `0 0 ${W} ${totalH}`);
+  svg.setAttribute('height', totalH);
+  const color = '#908D84';
+  const off = 12;
+  function edgePt(from, to, o) {
+    const dx = to.x - from.x, dy = to.y - from.y;
+    const len = Math.sqrt(dx*dx + dy*dy);
+    return { x: from.x + dx/len*o, y: from.y + dy/len*o };
+  }
+  let lines = `<defs><marker id="arr" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="${color}" stroke-width="1"/></marker></defs>`;
+  [[0,1],[1,2],[2,0]].forEach(([a,b]) => {
+    const s = edgePt(corners[a], corners[b], off);
+    const e = edgePt(corners[b], corners[a], off);
+    const sm = edgePt(corners[b], corners[a], off+18);
+    const em = edgePt(corners[a], corners[b], off+18);
+    lines += `<line x1="${s.x}" y1="${s.y}" x2="${sm.x}" y2="${sm.y}" stroke="${color}" stroke-width="1.5" marker-end="url(#arr)"/>`;
+    lines += `<line x1="${e.x}" y1="${e.y}" x2="${em.x}" y2="${em.y}" stroke="${color}" stroke-width="1.5" marker-end="url(#arr)"/>`;
+  });
+  svg.innerHTML = lines;
+}
+
+setTimeout(layoutTriangle, 150);
+window.addEventListener('resize', layoutTriangle);
+</script>
+</body>
+</html>
