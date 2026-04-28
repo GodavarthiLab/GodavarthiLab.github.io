@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to publish the Godavarthi Lab website on GitHub Pages</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#F7F4EE; --white:#FEFCF8; --ink:#1A1916; --ink-mid:#4B4840;
+  --ink-soft:#908D84; --sage:#4A7A62; --sage-pale:#EAF2ED;
+  --terra:#B85C35; --terra-pale:#F5EAE3;
+  --border:rgba(26,25,22,0.10);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;padding:4rem 2rem;max-width:760px;margin:0 auto;}
+h1{font-family:'Libre Baskerville',serif;font-size:2.2rem;font-weight:400;line-height:1.2;margin-bottom:0.5rem;}
+h1 em{font-style:italic;color:var(--sage);}
+.subtitle{font-size:1rem;color:var(--ink-soft);margin-bottom:3rem;}
+h2{font-family:'Libre Baskerville',serif;font-size:1.3rem;font-weight:400;color:var(--ink);margin:3rem 0 1rem;}
+p{font-size:0.95rem;color:var(--ink-mid);line-height:1.85;margin-bottom:1rem;}
+p:last-child{margin-bottom:0;}
+.step{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1.75rem 2rem;margin-bottom:1.25rem;position:relative;}
+.step-num{font-family:'Libre Baskerville',serif;font-size:0.75rem;font-style:italic;color:var(--ink-soft);margin-bottom:0.5rem;display:block;}
+.step-title{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:400;color:var(--ink);margin-bottom:0.75rem;}
+.step p{font-size:0.92rem;margin-bottom:0.6rem;}
+.step p:last-child{margin-bottom:0;}
+code{font-family:monospace;font-size:0.88rem;background:rgba(74,122,98,0.1);color:var(--sage);padding:0.15rem 0.45rem;border-radius:3px;}
+.note{background:var(--sage-pale);border-left:3px solid var(--sage);padding:1rem 1.25rem;border-radius:0 4px 4px 0;margin:1rem 0;font-size:0.88rem;color:var(--ink-mid);line-height:1.7;}
+.warn{background:var(--terra-pale);border-left:3px solid var(--terra);padding:1rem 1.25rem;border-radius:0 4px 4px 0;margin:1rem 0;font-size:0.88rem;color:var(--ink-mid);line-height:1.7;}
+.folder-tree{background:var(--ink);color:#E8F5EE;font-family:monospace;font-size:0.85rem;padding:1.25rem 1.5rem;border-radius:4px;line-height:1.9;margin:1rem 0;}
+.folder-tree .dir{color:#9FC4B0;}
+.folder-tree .file{color:#F7F4EE;}
+.folder-tree .comment{color:#6A8A78;font-size:0.78rem;}
+a{color:var(--sage);text-decoration:none;border-bottom:1px solid rgba(74,122,98,0.3);}
+a:hover{border-color:var(--sage);}
+hr{border:none;border-top:1px solid var(--border);margin:3rem 0;}
+.section-label{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:0.75rem;display:block;}
+</style>
+</head>
+<body>
+
+<span class="section-label">Setup Guide</span>
+<h1>Publishing the<br><em>Godavarthi Lab</em> website</h1>
+<p class="subtitle">Step-by-step instructions for GitHub Pages — estimated time: 30 minutes</p>
+
+<hr>
+
+<h2>What you'll end up with</h2>
+<p>A live website at either <code>yourusername.github.io</code> (free, instant) or a custom domain like <code>godavarthilab.com</code> (~$15/year). The site will update automatically every time you upload a new file.</p>
+
+<div class="note">No coding knowledge required beyond what's in this guide. You'll be clicking buttons on a website — nothing goes in a terminal.</div>
+
+<hr>
+
+<h2>Part 1 — Prepare your files</h2>
+
+<p>Your website folder should look exactly like this before you upload anything:</p>
+
+<div class="folder-tree">
+<span class="dir">godavarthi-lab/</span><br>
+│<br>
+├── <span class="file">index.html</span> <span class="comment">← homepage (rename from godavarthi_lab_website.html)</span><br>
+│<br>
+├── <span class="dir">pages/</span><br>
+│   ├── <span class="file">people.html</span><br>
+│   ├── <span class="file">publications.html</span><br>
+│   └── <span class="file">news.html</span><br>
+│<br>
+├── <span class="dir">images/</span> <span class="comment">← create this folder, add photos here later</span><br>
+│<br>
+└── <span class="dir">css/</span><br>
+    └── <span class="file">style.css</span>
+</div>
+
+<div class="warn"><strong>Important:</strong> The homepage file must be named exactly <code>index.html</code> — not <code>godavarthi_lab_website.html</code>. GitHub Pages only recognizes <code>index.html</code> as the homepage.</div>
+
+<hr>
+
+<h2>Part 2 — Create a GitHub account</h2>
+
+<div class="step">
+  <span class="step-num">Step 1</span>
+  <div class="step-title">Go to github.com and sign up</div>
+  <p>Visit <a href="https://github.com" target="_blank">github.com</a> and click "Sign up." Choose a username — this will appear in your URL if you don't use a custom domain, so pick something like <code>godavarthilab</code> or your name.</p>
+  <p>Verify your email address when prompted.</p>
+</div>
+
+<hr>
+
+<h2>Part 3 — Create the repository</h2>
+
+<div class="step">
+  <span class="step-num">Step 2</span>
+  <div class="step-title">Create a new repository</div>
+  <p>Once logged in, click the green <strong>New</strong> button (top left, or at github.com/new).</p>
+  <p>In the "Repository name" field, type exactly: <code>godavarthilab.github.io</code> — replacing <code>godavarthilab</code> with whatever username you chose.</p>
+  <div class="note">The repository name must end in <code>.github.io</code> and must start with your exact username. This is what makes GitHub Pages work.</div>
+  <p>Set visibility to <strong>Public</strong>. Leave everything else as-is. Click <strong>Create repository</strong>.</p>
+</div>
+
+<hr>
+
+<h2>Part 4 — Upload your files</h2>
+
+<div class="step">
+  <span class="step-num">Step 3</span>
+  <div class="step-title">Upload index.html first</div>
+  <p>On the empty repository page, click <strong>uploading an existing file</strong> (there's a link in the middle of the page).</p>
+  <p>Drag your <code>index.html</code> file into the upload area, or click "choose your files" to browse for it.</p>
+  <p>Scroll down and click <strong>Commit changes</strong> (the green button). Leave the message as-is.</p>
+</div>
+
+<div class="step">
+  <span class="step-num">Step 4</span>
+  <div class="step-title">Create the pages folder and upload interior pages</div>
+  <p>From your repository homepage, click <strong>Add file → Create new file</strong>.</p>
+  <p>In the filename box, type: <code>pages/people.html</code> — typing the slash automatically creates the folder.</p>
+  <p>Open your local <code>people.html</code> file in any text editor (TextEdit on Mac, Notepad on Windows), select all the text, and paste it into the large text area on GitHub.</p>
+  <p>Click <strong>Commit new file</strong>. Repeat this for <code>pages/publications.html</code> and <code>pages/news.html</code>.</p>
+</div>
+
+<div class="step">
+  <span class="step-num">Step 5</span>
+  <div class="step-title">Create the images folder (for future use)</div>
+  <p>GitHub doesn't allow empty folders. To create the <code>images/</code> folder now (so it's ready for your photo), go to <strong>Add file → Create new file</strong> and name it <code>images/.gitkeep</code>. This is a blank placeholder file that just holds the folder open.</p>
+  <p>Click <strong>Commit new file</strong>.</p>
+  <div class="note">When you have a photo of Dr. Godavarthi, upload it to this folder and update the <code>&lt;img&gt;</code> tag in <code>people.html</code> — there's a comment in the file showing exactly how to do this.</div>
+</div>
+
+<hr>
+
+<h2>Part 5 — Enable GitHub Pages</h2>
+
+<div class="step">
+  <span class="step-num">Step 6</span>
+  <div class="step-title">Turn on GitHub Pages</div>
+  <p>In your repository, click <strong>Settings</strong> (top navigation bar, gear icon).</p>
+  <p>In the left sidebar, click <strong>Pages</strong>.</p>
+  <p>Under "Source," select <strong>Deploy from a branch</strong>. Under "Branch," select <strong>main</strong> and leave the folder as <strong>/ (root)</strong>. Click <strong>Save</strong>.</p>
+  <p>Wait about 2 minutes, then refresh the page. You'll see a message: <em>"Your site is live at https://godavarthilab.github.io"</em></p>
+</div>
+
+<div class="step">
+  <span class="step-num">Step 7</span>
+  <div class="step-title">Visit your live site</div>
+  <p>Go to <code>https://yourusername.github.io</code> in a browser. Your homepage should appear. Click through the navigation to make sure all pages load correctly.</p>
+  <div class="warn">If pages show a 404 error, double-check the filenames match exactly — GitHub is case-sensitive. <code>People.html</code> ≠ <code>people.html</code>.</div>
+</div>
+
+<hr>
+
+<h2>Part 6 — (Optional) Add a custom domain</h2>
+
+<div class="step">
+  <span class="step-num">Step 8</span>
+  <div class="step-title">Buy a domain name</div>
+  <p>Visit <a href="https://www.namecheap.com" target="_blank">Namecheap.com</a> and search for something like <code>godavarthilab.com</code> or <code>godavarthilab.org</code>. Domains cost around $10–15/year. Purchase it and create an account.</p>
+</div>
+
+<div class="step">
+  <span class="step-num">Step 9</span>
+  <div class="step-title">Point the domain to GitHub</div>
+  <p>In Namecheap, go to <strong>Domain List → Manage → Advanced DNS</strong>. Delete any existing A records and add these four new ones:</p>
+  <p>
+    Type: <code>A Record</code> · Host: <code>@</code> · Value: <code>185.199.108.153</code><br>
+    Type: <code>A Record</code> · Host: <code>@</code> · Value: <code>185.199.109.153</code><br>
+    Type: <code>A Record</code> · Host: <code>@</code> · Value: <code>185.199.110.153</code><br>
+    Type: <code>A Record</code> · Host: <code>@</code> · Value: <code>185.199.111.153</code>
+  </p>
+  <p>Also add a CNAME record: Type: <code>CNAME</code> · Host: <code>www</code> · Value: <code>yourusername.github.io</code></p>
+</div>
+
+<div class="step">
+  <span class="step-num">Step 10</span>
+  <div class="step-title">Register the domain in GitHub</div>
+  <p>Back in GitHub, go to your repository <strong>Settings → Pages</strong>. Under "Custom domain," type your domain (e.g. <code>godavarthilab.com</code>) and click Save.</p>
+  <p>Also check the box for <strong>Enforce HTTPS</strong> once it becomes available (may take a few minutes).</p>
+  <p>DNS changes can take up to 24 hours to fully propagate, but usually work within an hour.</p>
+</div>
+
+<hr>
+
+<h2>Part 7 — Updating the site in the future</h2>
+
+<div class="step">
+  <span class="step-num">Updating existing pages</span>
+  <div class="step-title">Edit a file directly on GitHub</div>
+  <p>Navigate to the file in your repository (e.g. <code>pages/news.html</code>). Click the pencil icon (Edit) in the top right of the file view. Make your changes in the text editor. Click <strong>Commit changes</strong>. The site updates automatically within about 60 seconds.</p>
+</div>
+
+<div class="step">
+  <span class="step-num">Adding a photo</span>
+  <div class="step-title">Upload a photo of Dr. Godavarthi</div>
+  <p>Go to the <code>images/</code> folder in your repository. Click <strong>Add file → Upload files</strong>. Upload your photo — name it something simple like <code>swetha.jpg</code>.</p>
+  <p>Then open <code>pages/people.html</code>, find this comment:</p>
+  <p><code>&lt;!-- Replace the placeholder below with an &lt;img&gt; tag... --&gt;</code></p>
+  <p>Delete the line below it that says <code>&lt;div class="pi-img-placeholder"&gt;SKG&lt;/div&gt;</code> and replace it with: <code>&lt;img src="../images/swetha.jpg" alt="Dr. Swetha Godavarthi"&gt;</code></p>
+</div>
+
+<div class="step">
+  <span class="step-num">Adding a team member</span>
+  <div class="step-title">Add a student card to People</div>
+  <p>Open <code>pages/people.html</code>. Find the <code>.team-grid</code> div for the appropriate section (Graduate Students or Undergraduate Researchers). Copy one of the existing <code>.team-card</code> blocks and update the name, role, and note text. Commit the changes.</p>
+</div>
+
+<div class="step">
+  <span class="step-num">Adding a news item</span>
+  <div class="step-title">Post a lab update</div>
+  <p>Open <code>pages/news.html</code>. Copy one of the existing <code>.news-entry</code> blocks and paste it at the top of the <code>.news-list</code> div (newest first). Update the date, title, body text, and tag. Commit the changes.</p>
+</div>
+
+<hr>
+
+<p style="font-size:0.85rem;color:var(--ink-soft);font-style:italic;margin-top:1rem;">Questions? Email <a href="mailto:skgodavarthi@pitt.edu">skgodavarthi@pitt.edu</a> or ask Claude for help with any specific step.</p>
+
+</body>
+</html>
