@@ -65,12 +65,26 @@ footer a{color:var(--sage);text-decoration:none;}
 }
 .news-tag.terra { background:var(--terra-pale); color:var(--terra); }
 
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:0.5rem;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--ink);transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
 @media(max-width:860px){
   nav{padding:0 1.25rem;}
-  .section{padding:4rem 1.5rem;}
-  .page-hero{padding:3.5rem 1.5rem 3rem;}
+  .hamburger{display:flex;}
+  .nav-links{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(247,244,238,0.98);backdrop-filter:blur(12px);flex-direction:column;padding:1.5rem 2rem;gap:1.25rem;border-bottom:1px solid var(--border);box-shadow:0 4px 20px rgba(26,25,22,0.1);z-index:99;}
+  .nav-links.open{display:flex;}
+  .nav-links a{color:var(--ink-mid) !important;font-size:1rem;}
+  .section{padding:3rem 1.25rem;}
+  .page-hero{padding:2.5rem 1.25rem 2rem;}
   .page-hero h1{font-size:2.2rem;}
-  .news-entry{grid-template-columns:1fr;gap:0.5rem;}
+  .news-entry{grid-template-columns:1fr;gap:1rem;}
+  .news-content{grid-template-columns:1fr;gap:1rem;}
+  .news-thumb{width:100%;}
+  .news-date{padding-top:0;}
   footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;}
 }
 .news-content {
@@ -106,8 +120,14 @@ footer a{color:var(--sage);text-decoration:none;}
 <body>
 
 <nav>
+<nav id="main-nav">
   <a href="../index.html" class="nav-brand">the <span>Godavarthi</span> lab</a>
-  <ul class="nav-links">
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
     <li><a href="../index.html#research">research</a></li>
     <li><a href="people.html">people</a></li>
     <li><a href="publications.html">publications</a></li>
@@ -206,6 +226,13 @@ footer a{color:var(--sage);text-decoration:none;}
   <span>The Godavarthi Lab · RIT Integrated Sciences Academy · Est. 2026</span>
   <span><a href="mailto:skgodavarthi@pitt.edu">skgodavarthi@pitt.edu</a></span>
 </footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('nav-links').classList.toggle('open');
+}
+</script>
 
 </body>
 </html>
