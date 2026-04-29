@@ -209,50 +209,65 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 footer a{color:var(--sage);text-decoration:none;}
 
 @media(max-width:900px){
+  /* NAV */
   nav{padding:0 1.25rem;}
   .nav-links{gap:1rem;}
   .nav-links a{font-size:0.7rem;letter-spacing:0.05em;}
-  .content{padding:3.5rem 1.5rem 4rem;}
-  .overview-grid{grid-template-columns:1fr;gap:3rem;}
-  .cards-row{grid-template-columns:1fr;}
+
+  /* HERO */
+  div[style*="height:40vw"]{height:50vw !important;}
+
+  /* CONTENT */
+  .content{padding:2rem 1.25rem 3rem;}
+
+  /* OVERVIEW */
+  .overview-title{font-size:1.2rem;white-space:normal;text-align:left;}
+  .overview-body p{font-size:1rem;}
+  .overview-bullets li{font-size:1rem;}
+
+  /* PARA ROWS — stack vertically */
+  .para-row{grid-template-columns:1fr;gap:1rem;}
+  .para-img img{width:100%;}
+  .para-text p{font-size:1rem;}
+
+  /* MODEL SYSTEMS */
+  .model-systems-row{grid-template-columns:1fr;gap:1rem;}
+  .model-systems-text p{font-size:1rem;}
+
+  /* TRIANGLE — replace with stacked cards */
+  .tri-wrap{height:auto !important;}
+  .card-a{
+    position:static !important;
+    width:100% !important;
+    left:auto !important;
+    top:auto !important;
+    margin-bottom:1rem;
+  }
+  #triSvg{display:none;}
+  .corner-dot{display:none;}
+  .center-gif{
+    position:static !important;
+    transform:none !important;
+    margin:1rem auto;
+    display:block;
+  }
+
+  /* DETAIL PANELS */
+  .detail-header{padding:1rem 1.25rem;flex-wrap:wrap;}
+  .detail-left{padding:1.25rem;}
   .detail-body-grid{grid-template-columns:1fr;}
   .detail-left{border-right:none;border-bottom:1px solid var(--border);}
+
+  /* DETAIL PARA ROWS */
+  .detail-area .para-row{grid-template-columns:1fr;gap:1rem;}
+  div[style*="grid-template-columns:1fr 1fr"]{
+    display:block !important;
+  }
+  div[style*="grid-template-columns:1fr 1fr"] > div{
+    margin-bottom:1rem;
+  }
+
   footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;}
-}
-.collage-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr 1fr;
-  width:100%;
-  height:100%;
-  position:absolute;
-  inset:0;
-}
-.collage-grid img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.collage-overlay {
-  position:absolute;
-  inset:0;
-  background:rgba(10,18,14,0.45);
-  z-index:1;
-}
-.hero-text {
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:2;
-}
-.hero-text h1 {
-  font-family:'Libre Baskerville', serif;
-  font-size:3rem;
-  font-weight:400;
-  color:#fff;
-  text-align:center;
 }
 
 /* TRIANGLE LAYOUT */
@@ -270,13 +285,29 @@ footer a{color:var(--sage);text-decoration:none;}
 .card-more:hover { text-decoration:underline; }
 .center-gif { position:absolute; width:130px; height:130px; border-radius:50%; overflow:hidden; border:1px solid var(--border); transform:translate(-50%,-50%); }
 .corner-dot { position:absolute; width:10px; height:10px; border-radius:50%; background:var(--ink-soft); transform:translate(-50%,-50%); }
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:0.5rem;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--ink);transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+@media(max-width:900px){
+  .hamburger{display:flex;}
+  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(247,244,238,0.98);backdrop-filter:blur(12px);flex-direction:column;padding:1.5rem 2rem;gap:1.25rem;border-bottom:1px solid var(--border);box-shadow:0 4px 20px rgba(26,25,22,0.1);}
+  .nav-links.open{display:flex;}
+  .nav-links a{color:var(--ink-mid) !important;font-size:1rem;}
+}
 </style>
 </head>
 <body>
 
 <nav id="main-nav">
   <a href="../index.html" class="nav-brand">Godavarthi <span>Laboratory</span></a>
-  <ul class="nav-links">
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
     <li><a href="research.html" class="active">RESEARCH</a></li>
     <li><a href="people.html">PEOPLE</a></li>
     <li><a href="publications.html">PUBLICATIONS</a></li>
@@ -558,6 +589,11 @@ footer a{color:var(--sage);text-decoration:none;}
 const nav = document.getElementById('main-nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>80),{passive:true});
 nav.classList.add('scrolled');
+
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('nav-links').classList.toggle('open');
+}
 
 function toggleCard(cardId, detailId) {
   const detail = document.getElementById(detailId);
