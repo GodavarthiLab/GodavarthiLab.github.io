@@ -36,7 +36,7 @@ footer a{color:var(--sage);text-decoration:none;}
 /* NEWS ENTRIES */
 .news-list { margin-top:3rem; }
 .news-entry {
-  display:grid; grid-template-columns:120px 1fr;
+  display:grid; grid-template-columns:100px 1fr;
   gap:2.5rem; padding:2.5rem 0;
   border-bottom:1px solid var(--border);
   align-items:start;
@@ -87,12 +87,10 @@ footer a{color:var(--sage);text-decoration:none;}
   .news-date{padding-top:0;}
   footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;}
 }
-.news-content {
-  display:grid; grid-template-columns:160px 1fr;
-  gap:1.5rem; align-items:start;
-}
+.news-content { display:grid; grid-template-columns:1fr; gap:1.5rem; align-items:start; }
 .news-thumb {
-  width:160px;
+  width:100%;
+  max-width:160px;
   border-radius:4px; overflow:hidden;
   background:var(--sage-pale);
 }
@@ -119,7 +117,6 @@ footer a{color:var(--sage);text-decoration:none;}
 </head>
 <body>
 
-<nav>
 <nav id="main-nav">
   <a href="../index.html" class="nav-brand">the <span>Godavarthi</span> lab</a>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
