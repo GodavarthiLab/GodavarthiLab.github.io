@@ -459,6 +459,55 @@ nav.scrolled .hamburger span { background:var(--ink); }
   .hero-tag { font-size:0.7rem; white-space:normal; text-align:center; width:90%; }
 }
 </style>
+
+   position:fixed;
+    top:64px; left:0; right:0;
+    background:rgba(247,244,238,0.98);
+    backdrop-filter:blur(12px);
+    flex-direction:column;
+    padding:1.5rem 2rem;
+    gap:1.25rem;
+    border-bottom:1px solid var(--border);
+    box-shadow:0 4px 20px rgba(26,25,22,0.1);
+  }
+  .nav-links.open { display:flex; }
+  .nav-links a { color:var(--ink-mid) !important; font-size:1rem; }
+  .nav-links a:hover { color:var(--sage) !important; }
+  .hero-content h1 { font-size:2.2rem; }
+  .hero-tag { font-size:0.7rem; white-space:normal; text-align:center; width:90%; }
+}
+</style>
+
+<!-- Open Graph / LinkedIn / Facebook -->
+<meta property="og:title" content="Godavarthi Laboratory">
+<meta property="og:description" content="We study how synapses establish and maintain their chemical identity — with implications for autism and neuromuscular disease.">
+<meta property="og:image" content="https://godavarthilab.github.io/images/Hero.png">
+<meta property="og:url" content="https://godavarthilab.github.io">
+<meta property="og:type" content="website">
+
+<!-- Twitter/X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Godavarthi Laboratory">
+<meta name="twitter:description" content="We study how synapses establish and maintain their chemical identity — with implications for autism and neuromuscular disease.">
+<meta name="twitter:image" content="https://godavarthilab.github.io/images/Hero.png">
+
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="#" class="nav-brand">Godavarthi <span>Laboratory</span></a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="pages/research.html">RESEARCH</a></li>
+    <li><a href="pages/people.html">PEOPLE</a></li>
+    <li><a href="pages/publications.html">PUBLICATIONS</a></li>
+    <li><a href="pages/news.html">NEWS</a></li>
+
+
 </head>
 <body>
 
