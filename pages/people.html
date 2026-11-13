@@ -66,6 +66,19 @@ footer a{color:var(--sage);text-decoration:none;}
 .team-card-role{font-size:0.78rem;color:var(--sage);font-weight:500;margin-bottom:0.4rem;}
 .team-card-note{font-size:0.78rem;color:var(--ink-soft);line-height:1.5;}
 
+/* MEMBER PROFILES (photo + details beside the name) */
+.member-list{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem;}
+.member{display:grid;grid-template-columns:150px 1fr;gap:2rem;align-items:start;background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1.5rem;}
+.member-photo{aspect-ratio:4/5;background:var(--terra-pale);border-radius:3px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.member-photo img{width:100%;height:100%;object-fit:cover;}
+.member-name{font-family:'Libre Baskerville',serif;font-size:1.15rem;font-weight:400;color:var(--ink);margin-bottom:0.15rem;}
+.member-role{font-size:0.8rem;color:var(--terra);font-weight:500;margin-bottom:0.2rem;}
+.member-email{font-size:0.82rem;color:var(--sage);text-decoration:none;}
+.member-email:hover{text-decoration:underline;}
+.member-favs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem 2rem;margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--border);}
+.member-favs dt{font-size:0.66rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);}
+.member-favs dd{font-size:0.88rem;color:var(--ink-mid);line-height:1.5;}
+
 /* JOIN BANNER */
 .join-banner{background:var(--ink);border-radius:4px;padding:3rem 3.5rem;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;margin-top:2rem;}
 .join-banner h3{font-family:'Libre Baskerville',serif;font-size:1.5rem;font-weight:400;color:#F7F4EE;margin-bottom:0.5rem;}
@@ -92,6 +105,9 @@ footer a{color:var(--sage);text-decoration:none;}
   .pi-layout{grid-template-columns:1fr;}
   .pi-img{aspect-ratio:1/1;max-width:200px;margin:0 auto;}
   .pi-links{flex-wrap:wrap;gap:0.5rem;}
+  .member{grid-template-columns:1fr;gap:1.25rem;}
+  .member-photo{max-width:180px;}
+  .member-favs{grid-template-columns:1fr;}
   .join-banner{grid-template-columns:1fr;padding:2rem;gap:1.5rem;}
   footer{flex-direction:column;gap:0.5rem;text-align:center;padding:1.5rem;}
 }
@@ -158,8 +174,62 @@ footer a{color:var(--sage);text-decoration:none;}
 
   <hr class="divider" style="margin-top:5rem;">
 
-  <!-- GRADUATE STUDENTS -->
+  <!-- TEAM -->
   <div class="team-section">
+    <!-- UNDERGRADUATE STUDENT WORKERS -->
+    <div class="team-section-title">Undergraduate Student Workers</div>
+    <div class="member-list">
+      <div class="member">
+        <div class="member-photo">
+          <img src="../images/people/yasmin-yilmaz.jpg" alt="Yasmin Leonova Yilmaz">
+        </div>
+        <div>
+          <div class="member-name">Yasmin Leonova Yilmaz</div>
+          <div class="member-role">Student Worker</div>
+          <a class="member-email" href="mailto:yly3676@rit.edu">yly3676@rit.edu</a>
+          <dl class="member-favs">
+            <div><dt>Fav food</dt><dd>Steak</dd></div>
+            <div><dt>Fav drink</dt><dd>Diet Coke / a nice latte</dd></div>
+            <div><dt>Fav activity</dt><dd>Playing with my cats; reading a book; cooking and baking</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="member">
+        <div class="member-photo">
+          <img src="../images/people/jude-goldberg.jpg" alt="Jude Goldberg">
+        </div>
+        <div>
+          <div class="member-name">Jude Goldberg</div>
+          <div class="member-role">Student Worker</div>
+          <a class="member-email" href="mailto:jwg5817@rit.edu">jwg5817@rit.edu</a>
+          <dl class="member-favs">
+            <div><dt>Fav food</dt><dd>Nachos</dd></div>
+            <div><dt>Fav drink</dt><dd>Root beer</dd></div>
+            <div><dt>Fav activity</dt><dd>Wrestling</dd></div>
+            <div><dt>Fav book</dt><dd><em>The Alchemist</em></dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="member">
+        <div class="member-photo">
+          <img src="../images/people/amelia-guo.jpg" alt="Amelia Guo">
+        </div>
+        <div>
+          <div class="member-name">Amelia Guo</div>
+          <div class="member-role">Student Worker</div>
+          <a class="member-email" href="mailto:ag7507@rit.edu">ag7507@rit.edu</a>
+          <dl class="member-favs">
+            <div><dt>Fav food</dt><dd>Bian rou ban mian</dd></div>
+            <div><dt>Fav drink</dt><dd>Iced coffee</dd></div>
+            <div><dt>Fav activity</dt><dd>Reading</dd></div>
+            <div><dt>Fav book</dt><dd><em>Omniscient Reader&rsquo;s Viewpoint</em></dd></div>
+            <div><dt>Fav movie</dt><dd><em>Everything Everywhere All at Once</em></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRADUATE STUDENTS -->
     <div class="team-section-title">Graduate Students</div>
     <div class="team-grid">
       <div class="team-card">
@@ -188,6 +258,7 @@ footer a{color:var(--sage);text-decoration:none;}
         </div>
       </div>
     </div>
+
   </div>
 
   <!-- JOIN BANNER -->
